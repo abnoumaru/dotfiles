@@ -1,0 +1,20 @@
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*~
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ignore specific directories
+/tmp/
+/cache/
+
+# Ignore local configuration files (may contain sensitive info like passwords)
+.local
+*.local
+
+Brewfile.lock.json

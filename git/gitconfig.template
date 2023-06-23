@@ -1,0 +1,10 @@
+[ghq]
+        root = /Users/hogehogehoge/go/src
+
+[alias]
+        st = status
+        co = checkout
+        cob = checkout -b
+[user]
+        name = Hoge Fuga
+        email = hoge@example.com

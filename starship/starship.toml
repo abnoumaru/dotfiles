@@ -1,0 +1,81 @@
+format = """
+[](#9A348E)\
+$os\
+$username\
+[](bg:#DA627D fg:#9A348E)\
+$directory\
+[](fg:#DA627D bg:#FB7D4B)\
+$git_branch\
+$git_status\
+[](fg:#FB7D4B bg:#86BBD8)\
+$golang\
+$java\
+$aws\
+[](fg:#86BBD8 bg:#06969A)\
+$helm\
+$terraform\
+[](fg:#06969A bg:#33658A)\
+$time\
+[ ](fg:#33658A)
+% """
+
+[username]
+show_always = true
+style_user = "bg:#9A348E"
+style_root = "bg:#9A348E"
+format = '[$user ]($style)'
+disabled = false
+
+[os]
+style = "bg:#9A348E"
+disabled = false
+
+[os.symbols]
+Macos = "󰲄 "
+
+[directory]
+style = "bg:#DA627D"
+format = "[ $path ]($style)"
+truncate_to_repo = true
+truncation_length = 3
+truncation_symbol = "…/"
+disabled = true
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#FB7D4B"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#FB7D4B"
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[golang]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[time]
+disabled = true
+
+[aws]
+symbol = ' 󰸏 '
+style = "bg:#86BBD8"
+format = '[$symbol ($profile) ]($style)'
+
+[helm]
+symbol = "󰰂"
+style = "bg:#06969A"
+format = "[ $symbol ($version )]($style)"
+detect_folders = ['charts']
+
+[terraform]
+symbol = ""
+style = "bg:#06969A"
+format = '[ $symbol ( $version )]($style)'
