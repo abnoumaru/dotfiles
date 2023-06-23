@@ -35,6 +35,7 @@ zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
 alias gc="gcloud config list"
+alias gmoji="gitmoji -c"
 alias h=helm
 alias hf=helmfile
 alias k=kubectl
