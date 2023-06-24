@@ -19,7 +19,7 @@ wezterm:
 neovim:
 	@echo "Setting up Neovim..."
 	mkdir -p $(HOME)/.config/nvim
-	ln -sf $(DOTFILES_DIR)/neovim/init.vim $(HOME)/.config/nvim/init.vim
+	ln -sf $(DOTFILES_DIR)/neovim/init.lua $(HOME)/.config/nvim/init.lua
 
 starship:
 	@echo "Setting up Starship..."
