@@ -50,5 +50,5 @@ export DENO_INSTALL="/Users/takaaki-abe/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=~/bin:$PATH
 
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
