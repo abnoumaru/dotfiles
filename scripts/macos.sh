@@ -7,8 +7,8 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.dock autohide -bool true
 
 # キーボードのリピート速度を最速に設定する
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # スクリーンショットの保存先を変更する
 if [ ! -d "${HOME}/Pictures/screenshots" ]; then
