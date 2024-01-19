@@ -1,3 +1,8 @@
+# 手順
+
+- CommandLineToolsをインストール
+- Homebrewをインストール
+- `make all`
 
 # 参考
 
