@@ -1,6 +1,6 @@
 DOTFILES_DIR := $(shell pwd)
 
-all: brew wezterm neovim starship zsh gitconfig rtx macos
+all: brew wezterm neovim starship zsh gitconfig mise macos
 
 brew:
 	@echo "Setting up Homebrew..."
@@ -37,9 +37,9 @@ gitconfig:
 	read -p "Enter your email: " email; \
 	sed -e "s/Hoge Fuga/$$name/" -e "s/hoge@example.com/$$email/" -e "s/hogehogehoge/$$USER/" $(DOTFILES_DIR)/git/gitconfig.template > $(HOME)/.gitconfig
 
-rtx:
-	@echo "Setting up rtx..."
-	ln -sf $(DOTFILES_DIR)/rtx/.tool-versions $(HOME)/.tool-versions
+mise:
+	@echo "Setting up mise..."
+	ln -sf $(DOTFILES_DIR)/mise/.tool-versions $(HOME)/.tool-versions
 
 macos:
 	@echo "Applying macOS system defaults..."
@@ -55,7 +55,7 @@ help:
 	@echo "  starship"
 	@echo "  zsh"
 	@echo "  gitconfig"
-	@echo "  rtx"
+	@echo "  mise"
 	@echo "  macos"
 
-.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig rtx macos help
+.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise macos help

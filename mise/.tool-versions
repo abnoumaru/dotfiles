@@ -1,5 +1,5 @@
 saml2aws  2.36.9
-awscli    2.12.1
+awscli    2.15.27
 kubectl   1.27.3
 kubie     0.19.3
 helm      3.12.0
