@@ -10,7 +10,7 @@ local act = wezterm.action
 
 return {
   -- Visualization
-  color_scheme = 'cyberpunk',
+  color_scheme = 'tokyonight-storm',
   window_background_opacity = 0.8,
   
   font = wezterm.font 'JetBrains Mono',

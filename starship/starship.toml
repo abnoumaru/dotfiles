@@ -2,20 +2,22 @@ format = """
 [](#9A348E)\
 $os\
 $username\
-[](bg:#DA627D fg:#9A348E)\
+[](fg:#9A348E bg:#FB7D4B)\
 $directory\
-[](fg:#DA627D bg:#FB7D4B)\
+[](fg:#FB7D4B bg:#E0C261)\
 $git_branch\
 $git_status\
-[](fg:#FB7D4B bg:#86BBD8)\
+[](fg:#E0C261 bg:#4CAF50)\
 $golang\
+$python\
+$ruby\
 $java\
-$aws\
-[](fg:#86BBD8 bg:#06969A)\
+[](fg:#4CAF50 bg:#06969A)\
 $helm\
 $terraform\
 [](fg:#06969A bg:#33658A)\
-$time\
+$gcloud\
+$aws\
 [ ](fg:#33658A)
 % """
 
@@ -34,12 +36,11 @@ disabled = false
 Macos = "󰲄 "
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:#FB7D4B fg:#202F55"
 format = "[ $path ]($style)"
-truncate_to_repo = true
-truncation_length = 3
+truncate_to_repo = false
+truncation_length = 1
 truncation_symbol = "…/"
-disabled = true
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -49,25 +50,27 @@ disabled = true
 
 [git_branch]
 symbol = ""
-style = "bg:#FB7D4B"
+style = "bg:#E0C261 fg:#202F55"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FB7D4B"
+style = "bg:#E0C261 fg:#202F55"
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#4CAF50"
 format = '[ $symbol ($version) ]($style)'
 
-[time]
-disabled = true
+[python]
+symbol = " "
+style = "bg:#4CAF50"
+format = '[ $symbol ($version) ]($style)'
 
-[aws]
-symbol = ' 󰸏 '
-style = "bg:#86BBD8"
-format = '[$symbol ($profile) ]($style)'
+[ruby]
+symbol = " "
+style = "bg:#4CAF50"
+format = '[ $symbol ($version) ]($style)'
 
 [helm]
 symbol = "󰰂"
@@ -79,3 +82,13 @@ detect_folders = ['charts']
 symbol = ""
 style = "bg:#06969A"
 format = '[ $symbol ( $version )]($style)'
+
+[aws]
+symbol = ' 󰸏 '
+style = "bg:#33658A"
+format = '[$symbol ($profile) ]($style)'
+
+[gcloud]
+symbol = ' 󱇶 '
+style = "bg:#33658A"
+format = '[$symbol ($profile) ]($style)'
