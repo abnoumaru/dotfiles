@@ -1,0 +1,38 @@
+{
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "editor.rulers": [
+            120
+        ],
+        "editor.semanticHighlighting.enabled": true
+    },
+    "editor.fontFamily": "Monaspace Neon Var, FiraCode Nerd Font, monospace",
+    "editor.fontLigatures": "'calt'",
+    "editor.formatOnPaste": true,
+    "editor.guides.bracketPairs": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.tabSize": 2,
+    "emmet.includeLanguages": {
+        "erb": "html",
+    },
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font, monospace",
+    "workbench.colorTheme": "Tokyo Night",
+    "workbench.iconTheme": "file-icons",
+    "workbench.preferredDarkColorTheme": "Tokyo Night",
+    "workbench.preferredLightColorTheme": "Tokyo Night Light",
+    "workbench.preferredHighContrastColorTheme": "Tokyo Night",
+    "workbench.preferredHighContrastLightColorTheme": "Tokyo Night Light",
+    "workbench.settings.useSplitJSON": true,
+    "markdown.extension.print.theme": "dark",
+    "explorer.confirmDragAndDrop": false,
+    "markdown.marp.themes": [
+        "./theme/abnoumaru-marp.css"
+    ]
+}
