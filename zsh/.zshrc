@@ -5,10 +5,10 @@ setopt hist_ignore_dups
 setopt share_history
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-  autoload -Uz compinit
-  compinit
+    autoload -Uz compinit
+    compinit
 fi
 
 # for private zsh file
@@ -35,7 +35,6 @@ zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
 alias gc="gcloud config list"
-alias gmoji="gitmoji -c"
 alias h=helm
 alias hf=helmfile
 alias k=kubectl
@@ -52,3 +51,9 @@ export PATH=~/bin:$PATH
 
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

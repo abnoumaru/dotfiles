@@ -23,7 +23,7 @@
         "erb": "html",
     },
     "terminal.integrated.fontFamily": "FiraCode Nerd Font, monospace",
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "LaserWave High Contrast",
     "workbench.iconTheme": "file-icons",
     "workbench.preferredDarkColorTheme": "Tokyo Night",
     "workbench.preferredLightColorTheme": "Tokyo Night Light",
@@ -34,5 +34,14 @@
     "explorer.confirmDragAndDrop": false,
     "markdown.marp.themes": [
         "./theme/abnoumaru-marp.css"
-    ]
+    ],
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": "true",
+        "scminput": false
+    },
+    "workbench.startupEditor": "none",
+    "explorer.confirmDelete": false
 }
