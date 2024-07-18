@@ -5,7 +5,12 @@ setopt hist_ignore_dups
 setopt share_history
 
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
+        FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+    fi
+    if [ -d "$(brew --prefix)/opt/zsh-completion/share/zsh-completions" ]; then
+        FPATH=$(brew --prefix)/opt/zsh-completion/share/zsh-completions:$FPATH
+    fi
 
     autoload -Uz compinit
     compinit
@@ -26,7 +31,7 @@ function _fzf_cd_ghq() {
     local root="$(ghq root)"
     local repo="$(ghq list | fzf --preview="ls -AF --color=always ${root}/{1}")"
     local dir="${root}/${repo}"
-    [ -n "${dir}" ] && cd "${dir}"
+    [ -n "${repo}" ] && [ -n "${dir}" ] && cd "${dir}"
     zle accept-line
     zle reset-prompt
 }
@@ -34,9 +39,8 @@ function _fzf_cd_ghq() {
 zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
+# alias
 alias gc="gcloud config list"
-alias h=helm
-alias hf=helmfile
 alias k=kubectl
 alias myip="curl -s https://httpbin.org/ip | jq ."
 alias t=terraform
@@ -45,15 +49,16 @@ alias tplan="terraform plan"
 alias vim=nvim
 alias zs="source ~/.zshrc"
 
-export DENO_INSTALL="/Users/takaaki-abe/.deno"
+# export 
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=~/bin:$PATH
-
-eval "$(mise activate zsh)"
-eval "$(starship init zsh)"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
