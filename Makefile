@@ -1,6 +1,6 @@
 DOTFILES_DIR := $(shell pwd)
 
-all: brew wezterm neovim starship zsh gitconfig mise vscode macos
+all: brew wezterm neovim starship zsh gitconfig mise karabiner vscode macos
 
 brew:
 	@echo "Setting up Homebrew..."
@@ -41,6 +41,10 @@ mise:
 	@echo "Setting up mise..."
 	ln -sf $(DOTFILES_DIR)/mise/.tool-versions $(HOME)/.tool-versions
 
+karabiner:
+	@echo "Setting up Karabiner-Elements..."
+	ln -sf $(DOTFILES_DIR)/karabiner/karabiner.json $(HOME)/.config/karabiner/karabiner.json
+
 vscode:
 	@echo "Setting up Visual Studio Code..."
 	ln -sf $(DOTFILES_DIR)/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
@@ -60,7 +64,8 @@ help:
 	@echo "  zsh"
 	@echo "  gitconfig"
 	@echo "  mise"
+	@echo "  karabiner"
 	@echo "  vscode"
 	@echo "  macos"
 
-.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode macos help
+.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode karabiner macos help

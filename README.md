@@ -2,6 +2,7 @@
 
 - CommandLineToolsをインストール
 - Homebrewをインストール
+- M2 Macの場合`sudo softwareupdate --install-rosetta` を実行
 - `make all`
 
 # 参考

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 # Finderで隠しファイルを表示する
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
