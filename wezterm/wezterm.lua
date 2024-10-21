@@ -41,6 +41,52 @@ end
 config.color_scheme = 'Sakura'
 config.font = wezterm.font 'JetBrains Mono'
 config.window_background_opacity = 0.8
+config.window_decorations = "RESIZE"
+
+-- tab bar
+config.window_frame = {
+  inactive_titlebar_bg = "none",
+  active_titlebar_bg = "none",
+}
+config.window_background_gradient = {
+  colors = { "#000000" },
+}
+config.show_new_tab_button_in_tab_bar = false
+config.show_close_tab_button_in_tabs = false
+config.colors = {
+  tab_bar = {
+    inactive_tab_edge = "none",
+  },
+}
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local background = "#67707e"
+  local foreground = "#FFFFFF"
+  local edge_background = "none"
+
+  if tab.is_active then
+    background = "#33658A"
+    foreground = "#FFFFFF"
+  end
+
+  local edge_foreground = background
+  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+
+  return {
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = SOLID_LEFT_ARROW },
+    { Background = { Color = background } },
+    { Foreground = { Color = foreground } },
+    { Text = title },
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = SOLID_RIGHT_ARROW },
+  }
+end)
+
 
 -- Key maps
 local act = wezterm.action
