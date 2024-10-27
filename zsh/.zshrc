@@ -81,6 +81,7 @@ export GPG_TTY=$(tty)
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=~/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 export NVM_DIR="$HOME/.nvm"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
