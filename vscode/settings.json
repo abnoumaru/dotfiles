@@ -14,16 +14,15 @@
         "editor.semanticHighlighting.enabled": true
     },
     "editor.fontFamily": "JetBrains Mono, FiraCode Nerd Font, monospace",
-    "editor.fontLigatures": "'calt'",
+    "editor.fontLigatures": false,
     "editor.formatOnPaste": true,
     "editor.guides.bracketPairs": true,
     "editor.inlineSuggest.enabled": true,
-    "editor.tabSize": 2,
     "emmet.includeLanguages": {
         "erb": "html",
     },
     "terminal.integrated.fontFamily": "FiraCode Nerd Font, monospace",
-    "workbench.colorTheme": "LaserWave High Contrast",
+    "workbench.colorTheme": "Tokyo Night",
     "workbench.iconTheme": "file-icons",
     "workbench.preferredDarkColorTheme": "Tokyo Night",
     "workbench.preferredLightColorTheme": "Tokyo Night Light",
@@ -37,7 +36,7 @@
     ],
     "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": "true",
         "scminput": false
@@ -57,5 +56,38 @@
         "*.db3": "${capture}.${extname}-*",
         "*.sdb": "${capture}.${extname}-*",
         "*.s3db": "${capture}.${extname}-*"
-    }
+    },
+    "github.copilot.advanced": {},
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "files.insertFinalNewline": true,
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "go.toolsManagement.autoUpdate": true
 }
