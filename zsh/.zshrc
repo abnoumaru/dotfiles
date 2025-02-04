@@ -100,6 +100,7 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=~/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.rd/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -116,3 +117,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

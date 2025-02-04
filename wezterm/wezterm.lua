@@ -40,6 +40,7 @@ end
 -- Visualization
 config.color_scheme = 'Sakura'
 config.font = wezterm.font 'JetBrains Mono'
+config.harfbuzz_features = { 'calt=0' }
 config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
 
