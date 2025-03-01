@@ -1,42 +1,42 @@
 format = """
-[](#9A348E)\
+[](#2B2B2B)\
 $os\
 $username\
-[](fg:#9A348E bg:#FB7D4B)\
+[](fg:#2B2B2B bg:#404040)\
 $directory\
-[](fg:#FB7D4B bg:#E0C261)\
+[](fg:#404040 bg:#555555)\
 $git_branch\
 $git_status\
-[](fg:#E0C261 bg:#4CAF50)\
+[](fg:#555555 bg:#6A6A6A)\
 $golang\
 $python\
 $ruby\
 $java\
-[](fg:#4CAF50 bg:#06969A)\
+[](fg:#6A6A6A bg:#808080)\
 $helm\
 $terraform\
-[](fg:#06969A bg:#33658A)\
+[](fg:#808080 bg:#959595)\
 $gcloud\
 $aws\
-[ ](fg:#33658A)
+[ ](fg:#959595)
 % """
 
 [username]
 show_always = true
-style_user = "bg:#9A348E fg:#CCCCCC"
-style_root = "bg:#9A348E fg:#CCCCCC"
+style_user = "bg:#2B2B2B fg:#E0E0E0"
+style_root = "bg:#2B2B2B fg:#FF7070"
 format = '[$user ]($style)'
 disabled = false
 
 [os]
-style = "bg:#9A348E fg:#CCCCCC"
+style = "bg:#2B2B2B fg:#E0E0E0"
 disabled = false
 
 [os.symbols]
 Macos = "󰲄 "
 
 [directory]
-style = "bg:#FB7D4B fg:#202F55"
+style = "bg:#404040 fg:#FFB74D"
 format = "[ $path ]($style)"
 truncate_to_repo = false
 truncation_length = 1
@@ -50,46 +50,46 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#E0C261 fg:#202F55"
+style = "bg:#555555 fg:#98FB98"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#E0C261 fg:#202F55"
+style = "bg:#555555 fg:#FF7F7F"
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [golang]
 symbol = " "
-style = "bg:#4CAF50 fg:#202F55"
+style = "bg:#6A6A6A fg:#00ADD8"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = " "
-style = "bg:#4CAF50 fg:#202F55"
+style = "bg:#6A6A6A fg:#FFD43B"
 format = '[ $symbol ($version) ]($style)'
 
 [ruby]
 symbol = " "
-style = "bg:#4CAF50 fg:#202F55"
+style = "bg:#6A6A6A fg:#CC342D"
 format = '[ $symbol ($version) ]($style)'
 detect_folders = ['.rbenv/']
 
 [helm]
 symbol = "󰰂"
-style = "bg:#06969A fg:#CCCCCC"
+style = "bg:#808080 fg:#0F1689"
 format = "[ $symbol ($version )]($style)"
 detect_folders = ['charts']
 
 [terraform]
 symbol = ""
-style = "bg:#06969A fg:#CCCCCC"
+style = "bg:#808080 fg:#7B42BC"
 format = '[ $symbol ( $version )]($style)'
 
 [aws]
 symbol = ' 󰸏 '
-style = "bg:#33658A fg:#CCCCCC"
+style = "bg:#959595 fg:#FF9900"
 format = '[$symbol ($profile) ]($style)'
 
 [gcloud]
 symbol = ' 󱇶 '
-style = "bg:#33658A fg:#CCCCCC"
+style = "bg:#959595 fg:#4285F4"
 format = '[$symbol ($profile) ]($style)'
