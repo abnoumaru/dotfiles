@@ -1,6 +1,6 @@
 DOTFILES_DIR := $(shell pwd)
 
-all: brew wezterm neovim starship zsh gitconfig mise karabiner vscode macos
+all: brew wezterm neovim starship zsh gitconfig mise karabiner vscode postgres macos
 
 brew:
 	@echo "Setting up Homebrew..."
@@ -49,6 +49,10 @@ vscode:
 	@echo "Setting up Visual Studio Code..."
 	ln -sf $(DOTFILES_DIR)/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
 
+postgres:
+	@echo "Setting up postgres..."
+	ln -sf $(DOTFILES_DIR)/postgres/.psqlrc $(HOME)/.psqlrc
+
 macos:
 	@echo "Applying macOS system defaults..."
 	sh -x $(DOTFILES_DIR)/scripts/macos.sh
@@ -66,6 +70,7 @@ help:
 	@echo "  mise"
 	@echo "  karabiner"
 	@echo "  vscode"
+	@echo "  postgres"
 	@echo "  macos"
 
-.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode karabiner macos help
+.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode karabiner postgres macos help
