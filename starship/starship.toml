@@ -71,6 +71,7 @@ format = '[ $symbol ($version) ]($style)'
 symbol = " "
 style = "bg:#4CAF50 fg:#202F55"
 format = '[ $symbol ($version) ]($style)'
+detect_folders = ['.rbenv/']
 
 [helm]
 symbol = "󰰂"
