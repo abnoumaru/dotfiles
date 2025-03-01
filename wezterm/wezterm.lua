@@ -38,7 +38,7 @@ end
 ----------------------------------------------------------
 
 -- Visualization
-config.color_scheme = 'Sakura'
+config.color_scheme = 'Material Palenight (base16)'
 config.font = wezterm.font 'JetBrains Mono'
 config.harfbuzz_features = { 'calt=0' }
 config.window_background_opacity = 0.8
