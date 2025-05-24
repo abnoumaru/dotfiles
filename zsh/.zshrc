@@ -59,7 +59,7 @@ bindkey "^h" _fzf_cd_ghq
 
 # For AWS profile
 function sap() {
-    local profiles=$(aws configure list-profiles)
+    local profiles=$(aws configure list-profiles | sort)
     local profile=$(echo "$profiles" | fzf --prompt="Select AWS Profile: ")
 
     if [ -n "$profile" ]; then
@@ -122,3 +122,8 @@ eval "$(pyenv init -)"
 export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi

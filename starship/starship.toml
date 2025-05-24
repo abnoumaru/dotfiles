@@ -64,7 +64,7 @@ format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = " "
-style = "bg:#383838 fg:#FFE873"
+style = "bg:#383838 fg:#4B8BBE"
 format = '[ $symbol ($version) ]($style)'
 
 [ruby]
@@ -73,16 +73,11 @@ style = "bg:#383838 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 detect_folders = ['.rbenv/']
 
-[helm]
-symbol = "󰰂"
-style = "bg:#404040 fg:#1E90FF"
-format = "[ $symbol ($version )]($style)"
-detect_folders = ['charts']
-
 [terraform]
 symbol = ""
 style = "bg:#404040 fg:#B4A0FF"
 format = '[ $symbol ( $version )]($style)'
+detect_files = ['.tflint.hcl']
 
 [aws]
 symbol = ' 󰸏 '
