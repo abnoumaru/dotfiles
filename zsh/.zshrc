@@ -91,6 +91,7 @@ alias tapply="terraform apply"
 alias tplan="terraform plan"
 alias vim=nvim
 alias zs="source ~/.zshrc"
+alias c='CLAUDE_CODE_USE_BEDROCK=1 ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0 AWS_PROFILE=bedrock AWS_REGION=us-west-2 claude'
 
 # ================================
 #            exports
