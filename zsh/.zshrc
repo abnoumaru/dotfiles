@@ -73,7 +73,7 @@ function sap() {
 
 # For history selection
 function _fzf-select-history() {
-    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
+    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
