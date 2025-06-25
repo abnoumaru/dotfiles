@@ -80,6 +80,70 @@ function _fzf-select-history() {
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
 
+# For repository file edit
+function _fzf-repo-edit() {
+    # 除外するディレクトリのパターン
+    local exclude_dirs=(
+        ".git"
+        "node_modules"
+        ".next"
+        "dist"
+        "build"
+        "coverage"
+        ".cache"
+        "vendor"
+        "__pycache__"
+        ".pytest_cache"
+        ".mypy_cache"
+        ".tox"
+        ".venv"
+        "venv"
+        ".env"
+    )
+    
+    # 除外パターンを作成
+    local exclude_pattern=""
+    for dir in "${exclude_dirs[@]}"; do
+        exclude_pattern="$exclude_pattern -name '$dir' -prune -o"
+    done
+    
+    # findとfzfを使ってファイルを選択 (ctrl-oでGitHubを開く)
+    local out=$(eval "find . $exclude_pattern -type f -print" | fzf --expect=ctrl-o --preview 'bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || cat {}' --preview-window=right:60%)
+    
+    # fzfの出力を解析
+    local key=$(echo "$out" | head -1)
+    local selected=$(echo "$out" | tail -n +2)
+    
+    if [ -n "$selected" ]; then
+        if [ "$key" = "ctrl-o" ]; then
+            # GitHubのリポジトリURLを取得してファイルのURLを構築
+            local remote_url=$(git remote get-url origin 2>/dev/null)
+            if [ -n "$remote_url" ]; then
+                # SSH形式をHTTPS形式に変換
+                local github_url=$(echo "$remote_url" | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
+                
+                # 現在のブランチを取得
+                local branch=$(git branch --show-current 2>/dev/null || echo "main")
+                
+                # 相対パスを取得
+                local relative_path="${selected#./}"
+                
+                # GitHubのファイルURLを開く
+                local file_url="${github_url}/blob/${branch}/${relative_path}"
+                open "$file_url"
+            else
+                echo "Git remote not found"
+            fi
+        else
+            # 通常の動作: Vimで開く
+            vim "$selected"
+        fi
+    fi
+    zle reset-prompt
+}
+zle -N _fzf-repo-edit
+bindkey '^f' _fzf-repo-edit
+
 # ================================
 #           aliases
 # ================================
@@ -91,7 +155,6 @@ alias tapply="terraform apply"
 alias tplan="terraform plan"
 alias vim=nvim
 alias zs="source ~/.zshrc"
-alias c='CLAUDE_CODE_USE_BEDROCK=1 ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0 AWS_PROFILE=bedrock AWS_REGION=us-west-2 claude'
 
 # ================================
 #            exports
