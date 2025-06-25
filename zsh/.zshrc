@@ -136,7 +136,7 @@ function _fzf-repo-edit() {
             fi
         else
             # 通常の動作: Vimで開く
-            vim "$selected"
+            vim "$selected" < /dev/tty
         fi
     fi
     zle reset-prompt
