@@ -1,6 +1,6 @@
 DOTFILES_DIR := $(shell pwd)
 
-all: brew wezterm neovim starship zsh gitconfig mise karabiner vscode postgres macos bin claude
+all: brew wezterm neovim starship zsh gitconfig mise karabiner vscode postgres macos bin claude claude_commands
 
 brew:
 	@echo "Setting up Homebrew..."
@@ -72,6 +72,16 @@ claude:
 	mkdir -p $(HOME)/.claude
 	ln -sf $(DOTFILES_DIR)/claude/CLAUDE.md $(HOME)/.claude/CLAUDE.md
 
+claude_commands:
+	@echo "Setting up Claude commands..."
+	mkdir -p $(HOME)/.claude/commands
+	@for file in $(DOTFILES_DIR)/claude/commands/*.md; do \
+		if [ -f "$$file" ]; then \
+			echo "Linking $$(basename $$file)..."; \
+			ln -sf "$$file" "$(HOME)/.claude/commands/$$(basename $$file)"; \
+		fi; \
+	done
+
 help:
 	@echo "make targets available:"
 	@echo "  all"
@@ -89,5 +99,6 @@ help:
 	@echo "  macos"
 	@echo "  bin"
 	@echo "  claude"
+	@echo "  claude_commands"
 
-.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode karabiner postgres macos bin claude help
+.PHONY: all brew brew_dump wezterm neovim starship raycast zsh gitconfig mise vscode karabiner postgres macos bin claude claude_commands help

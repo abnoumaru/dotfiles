@@ -136,7 +136,7 @@ function _fzf-repo-edit() {
             fi
         else
             # 通常の動作: Vimで開く
-            vim "$selected" < /dev/tty
+            vim "$selected" < /dev/tty > /dev/tty
         fi
     fi
     zle reset-prompt
@@ -155,6 +155,7 @@ alias tapply="terraform apply"
 alias tplan="terraform plan"
 alias vim=nvim
 alias zs="source ~/.zshrc"
+alias claude="~/.claude/local/claude"
 
 # ================================
 #            exports
