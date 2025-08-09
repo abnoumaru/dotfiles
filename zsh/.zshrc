@@ -1,6 +1,10 @@
 # ================================
-#          history settings
+#        Basic Shell Settings
 # ================================
+# Encoding
+setopt print_eight_bit
+
+# History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -10,13 +14,9 @@ setopt hist_reduce_blanks
 setopt share_history
 
 # ================================
-#        encoding settings
+#         Completions
 # ================================
-setopt print_eight_bit
-
-# ================================
-#         zsh completions
-# ================================
+# Homebrew completions
 if type brew &>/dev/null; then
     if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
         FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -30,20 +30,70 @@ if type brew &>/dev/null; then
 fi
 
 # ================================
-#         private zsh files
+#         Environment Variables
 # ================================
-ZSH_DIR="${HOME}/.zsh"
+# Basic paths
+export GPG_TTY=$(tty)
+export PATH=~/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 
-if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
-    for file in ${ZSH_DIR}/**/*.zsh; do
-        [ -r $file ] && source $file
-    done
-fi
+# Development tools
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# Claude Code settings
+export CLAUDE_CODE_AUTO_UPDATE=false
+export DISABLE_INTERLEAVED_THINKING=1
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
+
+# Other tools
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Rancher Desktop
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Google Cloud SDK
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # ================================
-#        fzf functions
+#         Tool Initializations
 # ================================
-# For ghq
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+eval "$(nodenv init - zsh)"
+
+# ================================
+#         Aliases
+# ================================
+alias gc="gcloud config list"
+alias k=kubectl
+alias myip="curl -s https://httpbin.org/ip | jq ."
+alias t=terraform
+alias tapply="terraform apply"
+alias tplan="terraform plan"
+alias vim=nvim
+alias zs="source ~/.zshrc"
+
+# ================================
+#         Functions & Keybindings
+# ================================
+# ghq repository selection
 function _fzf_cd_ghq() {
     FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
     local root="$(ghq root)"
@@ -53,25 +103,10 @@ function _fzf_cd_ghq() {
     zle accept-line
     zle reset-prompt
 }
-
 zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
-# For AWS profile
-function sap() {
-    local profiles=$(aws configure list-profiles | sort)
-    local profile=$(echo "$profiles" | fzf --prompt="Select AWS Profile: ")
-
-    if [ -n "$profile" ]; then
-        export AWS_PROFILE="$profile"
-        export AWS_DEFAULT_PROFILE="$profile"
-        echo "Switched to AWS profile: $AWS_PROFILE"
-    else
-        echo "No profile selected."
-    fi
-}
-
-# For history selection
+# History selection
 function _fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
     CURSOR=$#BUFFER
@@ -80,7 +115,7 @@ function _fzf-select-history() {
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
 
-# For repository file edit
+# Repository file edit
 function _fzf-repo-edit() {
     # 除外するディレクトリのパターン
     local exclude_dirs=(
@@ -145,50 +180,13 @@ zle -N _fzf-repo-edit
 bindkey '^f' _fzf-repo-edit
 
 # ================================
-#           aliases
+#         Private Configurations
 # ================================
-alias gc="gcloud config list"
-alias k=kubectl
-alias myip="curl -s https://httpbin.org/ip | jq ."
-alias t=terraform
-alias tapply="terraform apply"
-alias tplan="terraform plan"
-alias vim=nvim
-alias zs="source ~/.zshrc"
-alias claude="~/.claude/local/claude"
+# Load private zsh files
+ZSH_DIR="${HOME}/.zsh"
+if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
+    for file in ${ZSH_DIR}/**/*.zsh; do
+        [ -r $file ] && source $file
+    done
+fi
 
-# ================================
-#            exports
-# ================================
-export GPG_TTY=$(tty)
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export PATH=~/bin:$PATH
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/.rd/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-eval "$(mise activate zsh)"
-eval "$(starship init zsh)"
-eval "$(nodenv init - zsh)"
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi

@@ -3,10 +3,17 @@
 ## 前提
 
 - TODO.md をcommitに含める場合は確認をする
+- コミット前に必ず以下を確認:
+  - コードがコンパイルに成功すること
+  - 全てのテストがパスすること
+  - 新機能にはテストが含まれていること
+  - プロジェクトのフォーマッター/リンターに従っていること
 
 ## 実行手順
 1. `git status`でファイルを確認
-2. [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)に従ってコミットを実行
+2. フォーマッター/リンターを実行
+3. 変更内容をセルフレビュー
+4. [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)に従ってコミットを実行
 
 ## 形式の指定
 - type(scope): subject の形式に従う
@@ -14,3 +21,4 @@
 - 動詞は原形を使用（add, fix, updateなど）
 - scope は原則記述するが、適切なものがない場合は省略可
 - コミットメッセージは小文字で始める
+- メッセージは「なぜ」その変更を行ったかを説明する
