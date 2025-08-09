@@ -1,8 +1,11 @@
 # git-create-branch
 
-## branchを作成
+## Create branch
 
-- ブランチ名は [Conventional Branch](https://conventional-branch.github.io/) に従う
-- feature/[FeatureName]-[実装した機能名]
+- **Before creating**: Check if there's an existing feature branch with `git branch -a`
+- If working branch exists, switch to it with `git checkout <branch-name>`
+- Only create new branch if no related work exists
+- Branch names follow [Conventional Branch](https://conventional-branch.github.io/)
+- feature/[FeatureName]-[implemented-feature-name]
 
-例: feature/admin-user-role-edit-invite-form
+Example: feature/admin-user-role-edit-invite-form

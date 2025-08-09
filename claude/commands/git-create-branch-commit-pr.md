@@ -1,6 +1,7 @@
-# branch & commit & pr を作成
+# Create branch & commit & PR
 
-## 実行手順
-1. Read @~/.claude/commands/create-branch.md を実行
-2. Read @~/.claude/commands/create-commit.md を実行
-3. Read @~/.claude/commands/create-pr.md を実行
+## Steps
+1. Execute Read @~/.claude/commands/continue-work.md (check existing work first)
+2. Execute Read @~/.claude/commands/git-create-branch.md (only if new branch needed)
+3. Execute Read @~/.claude/commands/create-commit.md
+4. Execute Read @~/.claude/commands/git-create-pr.md

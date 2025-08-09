@@ -1,16 +1,24 @@
-# commitメッセージを作成
+# Create commit message
 
-## 前提
+## Prerequisites
 
-- TODO.md をcommitに含める場合は確認をする
+- Confirm if TODO.md is included in the commit
+- Always verify before committing:
+  - Code compiles successfully
+  - All tests pass
+  - New features include tests
+  - Code follows project formatter/linter rules
 
-## 実行手順
-1. `git status`でファイルを確認
-2. [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)に従ってコミットを実行
+## Steps
+1. Check files with `git status`
+2. Run formatter/linter
+3. Self-review changes
+4. Create commit following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
-## 形式の指定
-- type(scope): subject の形式に従う
-- タイトルは50文字以内、本文は72文字程度で改行
-- 動詞は原形を使用（add, fix, updateなど）
-- scope は原則記述するが、適切なものがない場合は省略可
-- コミットメッセージは小文字で始める
+## Format specification
+- Follow type(scope): subject format
+- Title within 50 chars, body wrapped at 72 chars
+- Use imperative verbs (add, fix, update, etc.)
+- Include scope when appropriate, may omit if none fits
+- Start commit messages with lowercase
+- Explain "why" the change was made
