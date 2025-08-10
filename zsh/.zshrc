@@ -91,12 +91,20 @@ eval "$(nodenv init - zsh)"
 # ================================
 #         Aliases
 # ================================
+# ls colors for macOS
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+alias ls='ls -G'
+
+# Git aliases
+alias cb="git rev-parse --abbrev-ref HEAD | tee /dev/tty | pbcopy"
+alias d="git diff"
+alias st="git status -sb"
+alias sw="git switch"
+
 alias gc="gcloud config list"
 alias k=kubectl
-alias myip="curl -s https://httpbin.org/ip | jq ."
-alias t=terraform
-alias tapply="terraform apply"
-alias tplan="terraform plan"
+alias m="curl -s https://httpbin.org/ip | jq ."
 alias vim=nvim
 alias zs="source ~/.zshrc"
 
