@@ -1,65 +1,46 @@
 format = """
-[](#1A1A1A)\
+[](#252525)\
 $os\
+[](fg:#1A1A1A bg:#252525)\
 $username\
-[](fg:#1A1A1A bg:#252525)\
-$directory\
 [](fg:#252525 bg:#303030)\
-$git_branch\
-$git_status\
+$directory\
 [](fg:#303030 bg:#383838)\
-$golang\
+$nodejs\
 $python\
 $ruby\
-$java\
-[](fg:#383838 bg:#404040)\
-$helm\
 $terraform\
+[](fg:#383838 bg:#404040)\
+$git_branch\
+$git_status\
 [](fg:#404040 bg:#484848)\
-$gcloud\
-$aws\
+$git_commit\
 [ ](fg:#484848)
 % """
 
 [username]
-show_always = true
-style_user = "bg:#1A1A1A fg:#E4E4E4"
-style_root = "bg:#1A1A1A fg:#FF6B6B"
+show_always = false
+style_user = "bg:#252525 fg:#E4E4E4"
+style_root = "bg:#252525 fg:#FF6B6B"
 format = '[$user ]($style)'
-disabled = false
 
 [os]
-style = "bg:#1A1A1A fg:#E4E4E4"
+style = "bg:#252525 fg:#E4E4E4"
 disabled = false
 
 [os.symbols]
-Macos = "󰲄 "
+Macos = "󰳗 "
 
 [directory]
-style = "bg:#252525 fg:#FFB74D"
+style = "bg:#303030 fg:#FFB74D"
 format = "[ $path ]($style)"
 truncate_to_repo = false
-truncation_length = 1
+truncation_length = 2
 truncation_symbol = "…/"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-
-[git_branch]
-symbol = ""
-style = "bg:#303030 fg:#98FB98"
-format = '[ $symbol $branch ]($style)'
-
-[git_status]
-style = "bg:#303030 fg:#FF7F7F"
-format = '([\[$all_status$ahead_behind\]]($style))'
-
-[golang]
-symbol = " "
-style = "bg:#383838 fg:#00E5FF"
+[nodejs]
+symbol = "󰎙 "
+style = "bg:#383838 fg:#6cc24a"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
@@ -75,16 +56,22 @@ detect_folders = ['.rbenv/']
 
 [terraform]
 symbol = ""
-style = "bg:#404040 fg:#B4A0FF"
-format = '[ $symbol ( $version )]($style)'
+style = "bg:#383838 fg:#B4A0FF"
+format = '[ $symbol ( $version) ]($style)'
 detect_files = ['.tflint.hcl']
 
-[aws]
-symbol = ' 󰸏 '
-style = "bg:#484848 fg:#FF9900"
-format = '[$symbol ($profile) ]($style)'
+[git_branch]
+symbol = " "
+style = "bg:#404040 fg:#87CEFA"
+format = '[$symbol $branch ]($style)'
 
-[gcloud]
-symbol = ' 󱇶 '
-style = "bg:#484848 fg:#4FC3F7"
-format = '[$symbol ($profile) ]($style)'
+[git_status]
+style = "bg:#404040 fg:#FF7F7F"
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[git_commit]
+style = "bg:#484848 fg:#DDA0DD"
+tag_symbol = ' ->  '
+format = '[ $hash$tag ]($style)'
+only_detached = false
+tag_disabled = false
