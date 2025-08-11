@@ -54,7 +54,6 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 # Claude Code settings
-export CLAUDE_CODE_AUTO_UPDATE=false
 export DISABLE_INTERLEAVED_THINKING=1
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
 
@@ -207,4 +206,3 @@ if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
         [ -r $file ] && source $file
     done
 fi
-

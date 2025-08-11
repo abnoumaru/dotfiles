@@ -40,6 +40,7 @@ gitconfig:
 mise:
 	@echo "Setting up mise..."
 	ln -sf $(DOTFILES_DIR)/mise/.tool-versions $(HOME)/.tool-versions
+	mise use --global npm:@google/gemini-cli@latest
 
 karabiner:
 	@echo "Setting up Karabiner-Elements..."
