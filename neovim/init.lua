@@ -67,15 +67,20 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- Manual LSP setup
-      lspconfig.ruby_lsp.setup({
+      -- Manual LSP setup (using new vim.lsp.config API)
+      vim.lsp.config.ruby_lsp = {
+        cmd = { "ruby-lsp" },
+        filetypes = { "ruby" },
+        root_dir = vim.fs.root(0, { "Gemfile", ".git" }),
         capabilities = capabilities,
-      })
+      }
 
-      lspconfig.pyright.setup({
+      vim.lsp.config.pyright = {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", ".git" }),
         capabilities = capabilities,
         settings = {
           python = {
@@ -85,10 +90,35 @@ local plugins = {
             }
           }
         }
+      }
+
+      vim.lsp.config.terraformls = {
+        cmd = { "terraform-ls", "serve" },
+        filetypes = { "terraform", "tf" },
+        root_dir = vim.fs.root(0, { ".terraform", ".git" }),
+        capabilities = capabilities,
+      }
+
+      -- Start LSP for each filetype
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "ruby",
+        callback = function()
+          vim.lsp.start(vim.lsp.config.ruby_lsp)
+        end,
       })
 
-      lspconfig.terraformls.setup({
-        capabilities = capabilities,
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "python",
+        callback = function()
+          vim.lsp.start(vim.lsp.config.pyright)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "terraform", "tf" },
+        callback = function()
+          vim.lsp.start(vim.lsp.config.terraformls)
+        end,
       })
 
       -- Key mappings
@@ -186,8 +216,16 @@ local plugins = {
         indent = {
           enable = true,
         },
+        endwise = {
+          enable = true,
+        },
       })
     end,
+  },
+
+  {
+    'RRethy/nvim-treesitter-endwise',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
 
   -- File explorer
@@ -285,6 +323,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
+    vim.opt_local.indentkeys:remove('.')
   end,
 })
 
