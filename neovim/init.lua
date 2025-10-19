@@ -59,74 +59,50 @@ local plugins = {
     end,
   },
 
-  -- LSP Configuration (simple approach)
+  -- LSP Configuration
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-    },
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
+  },
+
+  -- Bridge mason and lspconfig
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lspconfig = require("lspconfig")
 
-      -- Manual LSP setup (using new vim.lsp.config API)
-      vim.lsp.config.ruby_lsp = {
-        cmd = { "ruby-lsp" },
-        filetypes = { "ruby" },
-        root_dir = vim.fs.root(0, { "Gemfile", ".git" }),
-        capabilities = capabilities,
-      }
+      local on_attach = function(_, bufnr)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = 'Go to definition' })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = 'Hover documentation' })
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = 'Rename symbol' })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code actions' })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = 'Find references' })
+      end
 
-      vim.lsp.config.pyright = {
-        cmd = { "pyright-langserver", "--stdio" },
-        filetypes = { "python" },
-        root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", ".git" }),
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
+      require("mason-lspconfig").setup({
+        ensure_installed = { "ruby_lsp", "pyright", "terraformls", "gopls" },
+        handlers = {
+          function(server_name)
+            local opts = {
+              on_attach = on_attach,
+              capabilities = capabilities,
             }
-          }
+            if server_name == "pyright" then
+              opts.settings = {
+                python = {
+                  analysis = {
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                  }
+                }
+              }
+            end
+            lspconfig[server_name].setup(opts)
+          end,
         }
-      }
-
-      vim.lsp.config.terraformls = {
-        cmd = { "terraform-ls", "serve" },
-        filetypes = { "terraform", "tf" },
-        root_dir = vim.fs.root(0, { ".terraform", ".git" }),
-        capabilities = capabilities,
-      }
-
-      -- Start LSP for each filetype
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "ruby",
-        callback = function()
-          vim.lsp.start(vim.lsp.config.ruby_lsp)
-        end,
       })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "python",
-        callback = function()
-          vim.lsp.start(vim.lsp.config.pyright)
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "terraform", "tf" },
-        callback = function()
-          vim.lsp.start(vim.lsp.config.terraformls)
-        end,
-      })
-
-      -- Key mappings
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code actions' })
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Find references' })
     end,
   },
 
@@ -207,7 +183,11 @@ local plugins = {
           "vimdoc",
           "query",
           "json",
-          "yaml"
+          "yaml",
+          "typescript",
+          "javascript",
+          "go",
+          "markdown"
         },
         highlight = {
           enable = true,
@@ -361,7 +341,7 @@ vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { desc = 'Clear search highlight
 
 -- Format on save for supported languages
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.py", "*.rb", "*.tf"},
+  pattern = {"*.py", "*.rb", "*.tf", "*.go", "*.ts"},
   callback = function()
     vim.lsp.buf.format({ async = false })
   end,
