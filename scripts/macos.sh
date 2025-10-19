@@ -18,6 +18,9 @@ if [ ! -d "${HOME}/Pictures/screenshots" ]; then
 fi
 defaults write com.apple.screencapture location "${HOME}/Pictures/screenshots"
 
+# ref: https://github.com/ianyh/Amethyst/blob/development/README.md?plain=1#L33
+defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+
 # スクリプトを実行した後に変更を反映させる
 killall Finder
 killall Dock
