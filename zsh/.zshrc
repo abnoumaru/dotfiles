@@ -196,6 +196,21 @@ function _fzf-repo-edit() {
 zle -N _fzf-repo-edit
 bindkey '^f' _fzf-repo-edit
 
+# knqyf263/pet
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
+
 # ================================
 #         Private Configurations
 # ================================
