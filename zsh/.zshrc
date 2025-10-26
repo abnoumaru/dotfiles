@@ -110,6 +110,16 @@ alias zs="source ~/.zshrc"
 # ================================
 #         Functions & Keybindings
 # ================================
+# 任意のコマンドの実行結果をコマンドラインと一緒にコピー
+cmdcp() {
+    local cmd="$@"
+    {
+        echo "$ $cmd"
+        echo ""
+        eval "$cmd"
+    } | pbcopy
+    echo "✓ Copied to clipboard"
+}
 # ghq repository selection
 function _fzf_cd_ghq() {
     FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
@@ -187,7 +197,8 @@ function _fzf-repo-edit() {
                 echo "Git remote not found"
             fi
         else
-            # 通常の動作: Vimで開く
+            # 通常の動作: Vimで開く & クリップボードにコピー
+            echo -n "$selected" | pbcopy
             vim "$selected" < /dev/tty > /dev/tty
         fi
     fi
