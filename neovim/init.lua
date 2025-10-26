@@ -17,6 +17,8 @@ vim.opt.hlsearch = true            -- Highlight search results
 vim.opt.incsearch = true           -- Incremental search
 vim.opt.scrolloff = 8              -- Keep 8 lines above/below cursor
 vim.opt.signcolumn = "yes"         -- Always show sign column
+vim.opt.list = true                -- スペースを可視化
+vim.opt.listchars = { space = '·', tab = '→ ', trail = '•', nbsp = '␣' }
 
 -- Lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -34,20 +36,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specifications
 local plugins = {
-  -- Cyberdream colorscheme
+  -- Onedark colorscheme
   {
-    "scottmckendry/cyberdream.nvim",
+    "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("cyberdream").setup({
+      require("onedark").setup({
+        style = 'deep',
         transparent = true,
-        italic_comments = true,
-        hide_fillchars = true,
-        borderless_telescope = true,
-        terminal_colors = true,
       })
-      vim.cmd("colorscheme cyberdream")
+      require("onedark").load()
     end,
   },
 
@@ -264,7 +263,7 @@ local plugins = {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "cyberdream",
+          theme = "onedark",
         },
       })
     end,
@@ -275,6 +274,8 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
+      vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle git blame' })
+      vim.keymap.set('n', '<leader>gd', ':Gitsigns diffthis<CR>', { desc = 'Git diff' })
     end,
   },
 
@@ -285,6 +286,24 @@ local plugins = {
     config = function()
       vim.g.terraform_align = 1
       vim.g.terraform_fmt_on_save = 1
+    end,
+  },
+
+  -- Indent guides
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require("ibl").setup({
+        indent = {
+          char = "│",
+        },
+        scope = {
+          enabled = true,
+          show_start = true,
+          show_end = false,
+        },
+      })
     end,
   },
 }
