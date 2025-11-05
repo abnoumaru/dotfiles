@@ -88,7 +88,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
-
 -- Key maps
 local act = wezterm.action
 config.leader = { key="t", mods="CTRL", timeout_milliseconds=1000 }
@@ -107,6 +106,9 @@ config.keys = {
   -- Split Pane
   { key = '|', mods = "LEADER", action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   { key = '-', mods = "LEADER", action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+
+  -- for Claude Code
+  { key = "Enter", mods = "SHIFT", action = wezterm.action.SendString('\n')},
 }
 
 ------------------------------------------------------
