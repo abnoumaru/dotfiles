@@ -1,38 +1,38 @@
 format = """
-[](#252525)\
+[](#001129)\
 $os\
-[](fg:#1A1A1A bg:#252525)\
+[](fg:#001129 bg:#001129)\
 $username\
-[](fg:#252525 bg:#303030)\
+[](fg:#001129 bg:#041e42)\
 $directory\
-[](fg:#303030 bg:#383838)\
+[](fg:#041e42 bg:#0a2540)\
 $nodejs\
 $python\
 $ruby\
 $terraform\
-[](fg:#383838 bg:#404040)\
+[](fg:#0a2540 bg:#0f2d52)\
 $git_branch\
 $git_status\
-[](fg:#404040 bg:#484848)\
+[](fg:#0f2d52 bg:#143d64)\
 $git_commit\
-[ ](fg:#484848)
+[ ](fg:#143d64)
 % """
 
 [username]
 show_always = false
-style_user = "bg:#252525 fg:#E4E4E4"
-style_root = "bg:#252525 fg:#FF6B6B"
+style_user = "bg:#001129 fg:#e6edf3"
+style_root = "bg:#001129 fg:#FF6B6B"
 format = '[$user ]($style)'
 
 [os]
-style = "bg:#252525 fg:#E4E4E4"
+style = "bg:#001129 fg:#e6edf3"
 disabled = false
 
 [os.symbols]
 Macos = "󰳗 "
 
 [directory]
-style = "bg:#303030 fg:#FFB74D"
+style = "bg:#041e42 fg:#4a9eff"
 format = "[ $path ]($style)"
 truncate_to_repo = false
 truncation_length = 2
@@ -40,37 +40,37 @@ truncation_symbol = "…/"
 
 [nodejs]
 symbol = "󰎙 "
-style = "bg:#383838 fg:#6cc24a"
+style = "bg:#0a2540 fg:#68d391"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = " "
-style = "bg:#383838 fg:#4B8BBE"
+style = "bg:#0a2540 fg:#4a9eff"
 format = '[ $symbol ($version) ]($style)'
 
 [ruby]
 symbol = " "
-style = "bg:#383838 fg:#FF6B6B"
+style = "bg:#0a2540 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 detect_folders = ['.rbenv/']
 
 [terraform]
 symbol = ""
-style = "bg:#383838 fg:#B4A0FF"
+style = "bg:#0a2540 fg:#B4A0FF"
 format = '[ $symbol ( $version) ]($style)'
 detect_files = ['.tflint.hcl']
 
 [git_branch]
 symbol = " "
-style = "bg:#404040 fg:#87CEFA"
+style = "bg:#0f2d52 fg:#ffffff"
 format = '[$symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#404040 fg:#FF7F7F"
+style = "bg:#0f2d52 fg:#ffd166"
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_commit]
-style = "bg:#484848 fg:#DDA0DD"
+style = "bg:#143d64 fg:#e6edf3"
 tag_symbol = ' ->  '
 format = '[ $hash$tag ]($style)'
 only_detached = false

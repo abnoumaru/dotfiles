@@ -38,10 +38,10 @@ end
 ----------------------------------------------------------
 
 -- Visualization
-config.color_scheme = 'Material Palenight (base16)'
+config.color_scheme = 'Oceanic Next (Gogh)'
 config.font = wezterm.font 'JetBrains Mono'
 config.harfbuzz_features = { 'calt=0' }
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.92
 config.window_decorations = "RESIZE"
 
 -- tab bar
@@ -50,7 +50,7 @@ config.window_frame = {
   active_titlebar_bg = "none",
 }
 config.window_background_gradient = {
-  colors = { "#000000" },
+  colors = { "#001129" },
 }
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
@@ -63,13 +63,13 @@ local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local foreground = "#7E1883"
-  local background = "#FFFFFF"
+  local foreground = "#3d4f5d"
+  local background = "#e6edf3"
   local edge_background = "none"
 
   if tab.is_active then
-    background = "#F19BB4"
-    foreground = "#7E1883"
+    background = "#143d64"
+    foreground = "#ffffff"
   end
 
   local edge_foreground = background

@@ -36,17 +36,21 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specifications
 local plugins = {
-  -- Onedark colorscheme
+  -- Tokyonight colorscheme (blue-based)
   {
-    "navarasu/onedark.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("onedark").setup({
-        style = 'deep',
+      require("tokyonight").setup({
+        style = "night", -- night style は深い青ベース
         transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
       })
-      require("onedark").load()
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 
@@ -263,7 +267,7 @@ local plugins = {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "onedark",
+          theme = "tokyonight",
         },
       })
     end,
