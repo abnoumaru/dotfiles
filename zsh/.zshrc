@@ -18,15 +18,15 @@ setopt share_history
 # ================================
 # Homebrew completions
 if type brew &>/dev/null; then
-    if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
-        FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-    fi
-    if [ -d "$(brew --prefix)/opt/zsh-completion/share/zsh-completions" ]; then
-        FPATH=$(brew --prefix)/opt/zsh-completion/share/zsh-completions:$FPATH
-    fi
+  if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  fi
+  if [ -d "$(brew --prefix)/opt/zsh-completion/share/zsh-completions" ]; then
+    FPATH=$(brew --prefix)/opt/zsh-completion/share/zsh-completions:$FPATH
+  fi
 
-    autoload -Uz compinit
-    compinit
+  autoload -Uz compinit
+  compinit
 fi
 
 # ================================
@@ -110,99 +110,86 @@ alias zs="source ~/.zshrc"
 # ================================
 #         Functions & Keybindings
 # ================================
-# 任意のコマンドの実行結果をコマンドラインと一緒にコピー
+# Copy command output and the command itself to clipboard
 cmdcp() {
-    local cmd="$@"
-    {
-        echo "$ $cmd"
-        echo ""
-        eval "$cmd"
-    } | pbcopy
-    echo "✓ Copied to clipboard"
+  local cmd="$@"
+  {
+    echo "$ $cmd"
+    echo ""
+    eval "$cmd"
+  } | pbcopy
+  echo "✓ Copied to clipboard"
 }
 # ghq repository selection
 function _fzf_cd_ghq() {
-    FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
-    local root="$(ghq root)"
-    local repo="$(ghq list | fzf --preview="ls -AF --color=always ${root}/{1}")"
-    local dir="${root}/${repo}"
-    [ -n "${repo}" ] && [ -n "${dir}" ] && cd "${dir}"
-    zle accept-line
-    zle reset-prompt
+  FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
+  local root="$(ghq root)"
+  local repo="$(ghq list | fzf --preview="ls -AF --color=always ${root}/{1}")"
+  local dir="${root}/${repo}"
+  [ -n "${repo}" ] && [ -n "${dir}" ] && cd "${dir}"
+  zle accept-line
+  zle reset-prompt
 }
 zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
 # History selection
 function _fzf-select-history() {
-    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
-    CURSOR=$#BUFFER
-    zle reset-prompt
+  BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
+  CURSOR=$#BUFFER
+  zle reset-prompt
 }
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
 
 # Repository file edit
 function _fzf-repo-edit() {
-    # 除外するディレクトリのパターン
-    local exclude_dirs=(
-        ".git"
-        "node_modules"
-        ".next"
-        "dist"
-        "build"
-        "coverage"
-        ".cache"
-        "vendor"
-        "__pycache__"
-        ".pytest_cache"
-        ".mypy_cache"
-        ".tox"
-        ".venv"
-        "venv"
-        ".env"
-    )
-    
-    # 除外パターンを作成
-    local exclude_pattern=""
-    for dir in "${exclude_dirs[@]}"; do
-        exclude_pattern="$exclude_pattern -name '$dir' -prune -o"
-    done
-    
-    # findとfzfを使ってファイルを選択 (ctrl-oでGitHubを開く)
-    local out=$(eval "find . $exclude_pattern -type f -print" | fzf --expect=ctrl-o --preview 'bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || cat {}' --preview-window=right:60%)
-    
-    # fzfの出力を解析
-    local key=$(echo "$out" | head -1)
-    local selected=$(echo "$out" | tail -n +2)
-    
-    if [ -n "$selected" ]; then
-        if [ "$key" = "ctrl-o" ]; then
-            # GitHubのリポジトリURLを取得してファイルのURLを構築
-            local remote_url=$(git remote get-url origin 2>/dev/null)
-            if [ -n "$remote_url" ]; then
-                # SSH形式をHTTPS形式に変換
-                local github_url=$(echo "$remote_url" | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
-                
-                # 現在のブランチを取得
-                local branch=$(git branch --show-current 2>/dev/null || echo "main")
-                
-                # 相対パスを取得
-                local relative_path="${selected#./}"
-                
-                # GitHubのファイルURLを開く
-                local file_url="${github_url}/blob/${branch}/${relative_path}"
-                open "$file_url"
-            else
-                echo "Git remote not found"
-            fi
-        else
-            # 通常の動作: Vimで開く & クリップボードにコピー
-            echo -n "$selected" | pbcopy
-            vim "$selected" < /dev/tty > /dev/tty
-        fi
+  local exclude_dirs=(
+    ".git"
+    "node_modules"
+    ".next"
+    "dist"
+    "build"
+    "coverage"
+    ".cache"
+    "vendor"
+    "__pycache__"
+    ".pytest_cache"
+    ".mypy_cache"
+    ".tox"
+    ".venv"
+    "venv"
+    ".env"
+  )
+
+  local exclude_pattern=""
+  for dir in "${exclude_dirs[@]}"; do
+    exclude_pattern="$exclude_pattern -name '$dir' -prune -o"
+  done
+
+  local out=$(eval "find . $exclude_pattern -type f -print" | fzf --expect=ctrl-o --preview 'bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || cat {}' --preview-window=right:60%)
+
+  local key=$(echo "$out" | head -1)
+  local selected=$(echo "$out" | tail -n +2)
+
+  if [ -n "$selected" ]; then
+    if [ "$key" = "ctrl-o" ]; then
+      local remote_url=$(git remote get-url origin 2>/dev/null)
+      if [ -n "$remote_url" ]; then
+        local github_url=$(echo "$remote_url" | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
+        local branch=$(git branch --show-current 2>/dev/null || echo "main")
+        local relative_path="${selected#./}"
+        local file_url="${github_url}/blob/${branch}/${relative_path}"
+        open "$file_url"
+      else
+        echo "Git remote not found"
+      fi
+    else
+      echo -n "$selected" | pbcopy
+      vim "$selected" < /dev/tty > /dev/tty
     fi
-    zle reset-prompt
+  fi
+  zle reset-prompt
 }
 zle -N _fzf-repo-edit
 bindkey '^f' _fzf-repo-edit
@@ -230,8 +217,8 @@ function gen-ai-commit-msg() {
   DIFF=$(git diff --staged)
 
   if [ -z "$DIFF" ]; then
-    echo "No staged changes found. Please 'git add' files first." >&2
-    return 1
+  echo "No staged changes found. Please 'git add' files first." >&2
+  return 1
   fi
 
   COMMIT_FILE=$(mktemp)
@@ -293,7 +280,7 @@ alias airi='gen-ai-commit-msg'
 # Load private zsh files
 ZSH_DIR="${HOME}/.zsh"
 if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
-    for file in ${ZSH_DIR}/**/*.zsh; do
-        [ -r $file ] && source $file
-    done
+  for file in ${ZSH_DIR}/**/*.zsh; do
+  [ -r $file ] && source $file
+  done
 fi
