@@ -225,6 +225,27 @@ function gen-ai-commit-msg() {
   trap 'rm -f "${COMMIT_FILE}"' EXIT
 
   echo "愛季「あーコミットメッセージかぁ。あいでぃに任せて！」"
+  echo
+
+  if command -v wezterm &> /dev/null; then
+    ZSHRC_FILE="${(%):-%x}"
+    if [ -L "$ZSHRC_FILE" ]; then
+      ZSHRC_FILE=$(readlink "$ZSHRC_FILE")
+    fi
+    DOTFILES_DIR=$(cd "$(dirname "$ZSHRC_FILE")" && pwd)
+    IMAGES_DIR="${DOTFILES_DIR}/images"
+    if [ -d "${IMAGES_DIR}" ]; then
+      # Find all GIF files and select one randomly
+      GIF_FILES=("${IMAGES_DIR}"/*.gif)
+      if [ -f "${GIF_FILES[1]}" ]; then
+        # Select random GIF file
+        RANDOM_GIF=$(printf '%s\n' "${GIF_FILES[@]}" | shuf -n 1)
+        if [ -f "${RANDOM_GIF}" ]; then
+          wezterm imgcat "${RANDOM_GIF}" 2>/dev/null || true
+        fi
+      fi
+    fi
+  fi
 
   RAW=$(
     {
@@ -241,9 +262,10 @@ Requirements:
 2. Output a Title Line. If the change is complex, include a brief Body separated by a blank line. If simple, Title only.
 3. English only.
 4. type/scope are lowercase.
-5. Title Summary under 72 characters.
-6. Do NOT wrap with quotes/backticks.
-7. Do NOT include any additional commentary outside the tags.
+5. Types allowed: feat, fix, docs, style, refactor, test, chore
+6. Title Summary under 72 characters.
+7. Do NOT wrap with quotes/backticks.
+8. Do NOT include any additional commentary outside the tags.
 
 Generate the message based on the following git diff:
 PROMPT

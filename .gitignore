@@ -18,3 +18,7 @@ Thumbs.db
 *.local
 
 Brewfile.lock.json
+
+# Ignore images in zsh/images directory (keep directory structure)
+zsh/images/*
+!zsh/images/.gitkeep
