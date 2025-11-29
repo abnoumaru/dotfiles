@@ -222,6 +222,71 @@ zle -N pet-select
 stty -ixon
 bindkey '^s' pet-select
 
+function gen-ai-commit-msg() {
+  local DIFF AI_COMMIT_MSG COMMIT_FILE RAW
+
+  echo "Generate a commit message for staged changes."
+
+  DIFF=$(git diff --staged)
+
+  if [ -z "$DIFF" ]; then
+    echo "No staged changes found. Please 'git add' files first." >&2
+    return 1
+  fi
+
+  COMMIT_FILE=$(mktemp)
+  trap 'rm -f "${COMMIT_FILE}"' EXIT
+
+  echo "愛季「あーコミットメッセージかぁ。あいでぃに任せて！」"
+
+  RAW=$(
+    {
+      cat <<'PROMPT'
+Output ONLY the commit message enclosed strictly between these tags:
+<commit_message>
+... commit message here ...
+</commit_message>
+
+Do NOT output anything outside these tags. No explanations, no markdown, no code fences.
+
+Requirements:
+1. Follow Conventional Commits.
+2. Output a Title Line. If the change is complex, include a brief Body separated by a blank line. If simple, Title only.
+3. English only.
+4. type/scope are lowercase.
+5. Title Summary under 72 characters.
+6. Do NOT wrap with quotes/backticks.
+7. Do NOT include any additional commentary outside the tags.
+
+Generate the message based on the following git diff:
+PROMPT
+      echo
+      echo "$DIFF"
+    } | claude -p --model haiku
+  )
+
+  AI_COMMIT_MSG=$(
+    echo "$RAW" \
+    | awk '/<commit_message>/{flag=1; next} /<\/commit_message>/{flag=0} flag' \
+    | sed -E 's/^[[:space:]`]*//;s/[[:space:]`]*$//'
+  )
+
+  if [ -z "${AI_COMMIT_MSG:-}" ]; then
+    echo "Failed to generate commit message." >&2
+    return 1
+  fi
+
+  echo "${AI_COMMIT_MSG}" > "${COMMIT_FILE}"
+
+  echo ""
+  echo "AI generated message loaded. Opening editor for review/edit..."
+  git commit -e -F "${COMMIT_FILE}"
+
+  echo "愛季「またねん👋🏻👋🏻」"
+}
+
+alias airi='gen-ai-commit-msg'
+
 # ================================
 #         Private Configurations
 # ================================
