@@ -266,6 +266,7 @@ Requirements:
 6. Title Summary under 72 characters.
 7. Do NOT wrap with quotes/backticks.
 8. Do NOT include any additional commentary outside the tags.
+9. Do NOT include Co-authored-by or any other footer lines.
 
 Generate the message based on the following git diff:
 PROMPT
