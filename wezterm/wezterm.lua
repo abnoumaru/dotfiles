@@ -23,11 +23,11 @@ function toggle_opacity(window,pane)
   local overrides = window:get_config_overrides() or {}
 
   if not overrides.window_background_opacity then
-    overrides.window_background_opacity = 0.8
-  elseif overrides.window_background_opacity == 0.8 then
+    overrides.window_background_opacity = 0.7
+  elseif overrides.window_background_opacity == 0.7 then
     overrides.window_background_opacity = 1.0
   else
-    overrides.window_background_opacity = 0.8
+    overrides.window_background_opacity = 0.7
   end
 
   window:set_config_overrides(overrides)
