@@ -48,11 +48,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
 # Claude Code settings
 export DISABLE_INTERLEAVED_THINKING=1
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
@@ -86,6 +81,7 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(nodenv init - zsh)"
+eval "$(uv generate-shell-completion zsh)"
 
 # ================================
 #         Aliases
