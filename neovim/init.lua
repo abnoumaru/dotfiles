@@ -276,6 +276,52 @@ local plugins = {
     end,
   },
 
+  -- Buffer/Tab line
+  {
+    "romgrk/barbar.nvim",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    config = function()
+      require("barbar").setup({
+        animation = true,
+        icons = {
+          buffer_index = true,
+          filetype = { enabled = true },
+        },
+      })
+      -- タブバーの色を濃くする
+      vim.api.nvim_set_hl(0, 'BufferCurrent', { fg = '#ffffff', bg = '#1a1a2e', bold = true })
+      vim.api.nvim_set_hl(0, 'BufferCurrentIndex', { fg = '#7aa2f7', bg = '#1a1a2e', bold = true })
+      vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#e0af68', bg = '#1a1a2e' })
+      vim.api.nvim_set_hl(0, 'BufferCurrentSign', { fg = '#7aa2f7', bg = '#1a1a2e' })
+      vim.api.nvim_set_hl(0, 'BufferCurrentIcon', { bg = '#1a1a2e' })
+      vim.api.nvim_set_hl(0, 'BufferInactive', { fg = '#888888', bg = '#0f0f17' })
+      vim.api.nvim_set_hl(0, 'BufferInactiveIndex', { fg = '#555555', bg = '#0f0f17' })
+      vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#e0af68', bg = '#0f0f17' })
+      vim.api.nvim_set_hl(0, 'BufferInactiveSign', { fg = '#444444', bg = '#0f0f17' })
+      vim.api.nvim_set_hl(0, 'BufferInactiveIcon', { bg = '#0f0f17' })
+      vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#0a0a10' })
+      -- バッファ移動
+      vim.keymap.set('n', '<A-,>', ':BufferPrevious<CR>', { desc = 'Previous buffer' })
+      vim.keymap.set('n', '<A-.>', ':BufferNext<CR>', { desc = 'Next buffer' })
+      -- バッファ順序変更
+      vim.keymap.set('n', '<A-<>', ':BufferMovePrevious<CR>', { desc = 'Move buffer left' })
+      vim.keymap.set('n', '<A->>', ':BufferMoveNext<CR>', { desc = 'Move buffer right' })
+      -- バッファ番号でジャンプ
+      vim.keymap.set('n', '<A-1>', ':BufferGoto 1<CR>', { desc = 'Go to buffer 1' })
+      vim.keymap.set('n', '<A-2>', ':BufferGoto 2<CR>', { desc = 'Go to buffer 2' })
+      vim.keymap.set('n', '<A-3>', ':BufferGoto 3<CR>', { desc = 'Go to buffer 3' })
+      vim.keymap.set('n', '<A-4>', ':BufferGoto 4<CR>', { desc = 'Go to buffer 4' })
+      vim.keymap.set('n', '<A-5>', ':BufferGoto 5<CR>', { desc = 'Go to buffer 5' })
+      -- バッファを閉じる
+      vim.keymap.set('n', '<A-c>', ':BufferClose<CR>', { desc = 'Close buffer' })
+      vim.keymap.set('n', '<leader>bc', ':BufferCloseAllButCurrent<CR>', { desc = 'Close all but current' })
+    end,
+  },
+
   -- Git integration
   {
     "lewis6991/gitsigns.nvim",
