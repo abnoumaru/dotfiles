@@ -112,6 +112,24 @@ local plugins = {
     end,
   },
 
+  -- LSP Signature (関数シグネチャ表示)
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("lsp_signature").setup({
+        bind = true,
+        hint_enable = true,
+        hint_prefix = "💡 ",
+        handler_opts = {
+          border = "rounded",
+        },
+        floating_window = true,
+        floating_window_above_cur_line = true,
+      })
+    end,
+  },
+
   -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
