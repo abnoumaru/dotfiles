@@ -337,6 +337,19 @@ local plugins = {
     end,
   },
 
+  -- Search lens (検索結果の強化表示)
+  {
+    "kevinhwang91/nvim-hlslens",
+    config = function()
+      require("hlslens").setup()
+      -- 検索時のキーマッピング
+      vim.keymap.set('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], { desc = 'Next search result' })
+      vim.keymap.set('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], { desc = 'Previous search result' })
+      vim.keymap.set('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { desc = 'Search word under cursor' })
+      vim.keymap.set('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { desc = 'Search word under cursor (backward)' })
+    end,
+  },
+
   -- Git integration
   {
     "lewis6991/gitsigns.nvim",
