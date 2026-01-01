@@ -1,3 +1,6 @@
+-- Leader key (プラグイン読み込み前に設定が必要)
+vim.g.mapleader = " "
+
 -- Basic settings
 vim.opt.encoding = 'utf8'
 vim.wo.number = true
@@ -347,9 +350,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = 2
   end,
 })
-
--- Leader key
-vim.g.mapleader = " "
 
 -- Color settings
 vim.cmd('syntax on')
