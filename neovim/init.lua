@@ -286,6 +286,19 @@ local plugins = {
     end,
   },
 
+  -- Git messenger (カーソル位置のコミット情報をポップアップ表示)
+  {
+    "rhysd/git-messenger.vim",
+    config = function()
+      vim.keymap.set('n', '<leader>gm', ':GitMessenger<CR>', { desc = 'Show git commit message' })
+      -- ポップアップの色を濃くする
+      vim.api.nvim_set_hl(0, 'gitmessengerPopupNormal', { fg = '#ffffff', bg = '#1a1a2e' })
+      vim.api.nvim_set_hl(0, 'gitmessengerHeader', { fg = '#7aa2f7', bg = '#1a1a2e', bold = true })
+      vim.api.nvim_set_hl(0, 'gitmessengerHash', { fg = '#bb9af7', bg = '#1a1a2e' })
+      vim.api.nvim_set_hl(0, 'gitmessengerHistory', { fg = '#9ece6a', bg = '#1a1a2e' })
+    end,
+  },
+
   -- Terraform specific
   {
     "hashivim/vim-terraform",
