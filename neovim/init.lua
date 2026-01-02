@@ -3,14 +3,14 @@ vim.g.mapleader = " "
 
 -- Basic settings
 vim.opt.encoding = 'utf8'
-vim.wo.number = true
-vim.o.ruler = true
-vim.wo.cursorline = true
-vim.wo.cursorcolumn = true
-vim.bo.expandtab = true
-vim.bo.tabstop = 2
-vim.bo.shiftwidth = 2
-vim.bo.autoindent = true
+vim.opt.number = true
+vim.opt.ruler = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.autoindent = true
 
 -- Additional helpful settings
 vim.opt.clipboard = "unnamedplus"  -- Use system clipboard
@@ -137,7 +137,6 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -397,7 +396,7 @@ local plugins = {
     ft = "terraform",
     config = function()
       vim.g.terraform_align = 1
-      vim.g.terraform_fmt_on_save = 1
+      -- terraform_fmt_on_saveは削除（LSPのフォーマットを使用）
     end,
   },
 
@@ -456,8 +455,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Color settings
-vim.cmd('syntax on')
+-- Color settings (treesitterがハイライトを担当するためsyntax onは不要)
 if vim.fn.has('termguicolors') == 1 then
   vim.opt.termguicolors = true
 end
