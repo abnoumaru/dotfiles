@@ -198,7 +198,7 @@ local plugins = {
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "ruby",
-          "python", 
+          "python",
           "hcl",
           "terraform",
           "lua",
@@ -206,6 +206,7 @@ local plugins = {
           "vimdoc",
           "query",
           "json",
+          "jsonnet",
           "yaml",
           "typescript",
           "javascript",
@@ -453,6 +454,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
   end,
+})
+
+-- Jsonnet filetype detection
+vim.filetype.add({
+  extension = {
+    jsonnet = "jsonnet",
+    libsonnet = "jsonnet",
+  },
 })
 
 -- Color settings (treesitterがハイライトを担当するためsyntax onは不要)
