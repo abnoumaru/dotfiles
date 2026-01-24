@@ -1,0 +1,22 @@
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+
+[tools]
+awscli = "latest"
+azure-cli = "latest"
+duckdb = "latest"
+github-cli = "latest"
+jq = "latest"
+neovim = "latest"
+node = "latest"
+pnpm = "latest"
+ripgrep = "latest"
+saml2aws = "latest"
+starship = "latest"
+terraform = "latest"
+terraform-docs = "latest"
+terraform-ls = "latest"
+uv = "latest"
+"github:takai/git-ai-commit" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@google/gemini-cli" = "latest"

@@ -1,0 +1,169 @@
+# NOTE: Run `mise run <task>` in the dotfiles directory
+
+[tasks.all]
+description = "run all setup tasks"
+depends = [
+  "mise-link",
+  "brew",
+  "wezterm",
+  "neovim",
+  "starship",
+  "zsh",
+  "karabiner",
+  "vscode",
+  "postgres",
+  "bin",
+  "claude",
+  "claude_commands",
+]
+
+[tasks.mise-link]
+description = "create symlink for mise config"
+run = """
+#!/usr/bin/env bash
+echo "setting up mise config symlink..."
+mkdir -p "$HOME/.config/mise"
+ln -sf "{{ config_root }}/mise/config.toml" "$HOME/.config/mise/config.toml"
+"""
+
+[tasks.brew]
+description = "set up Homebrew"
+run = """
+#!/usr/bin/env bash
+echo "setting up Homebrew..."
+ln -sf "{{ config_root }}/Brewfile" "$HOME/Brewfile"
+brew bundle
+"""
+
+[tasks.brew_dump]
+description = "dump current Brewfile"
+run = """
+#!/usr/bin/env bash
+echo "dumping the current Brewfile..."
+brew bundle dump --force
+"""
+
+[tasks.wezterm]
+description = "set up WezTerm"
+run = """
+#!/usr/bin/env bash
+echo "Setting up WezTerm..."
+mkdir -p "$HOME/.config/wezterm"
+ln -sf "{{ config_root }}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+"""
+
+[tasks.neovim]
+description = "set up Neovim"
+run = """
+#!/usr/bin/env bash
+echo "setting up Neovim..."
+mkdir -p "$HOME/.config/nvim"
+ln -sf "{{ config_root }}/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+"""
+
+[tasks.starship]
+description = "set up Starship"
+run = """
+#!/usr/bin/env bash
+echo "setting up Starship..."
+ln -sf "{{ config_root }}/starship/starship.toml" "$HOME/.config/starship.toml"
+"""
+
+[tasks.zsh]
+description = "set up Z Shell"
+run = """
+#!/usr/bin/env bash
+echo "setting up Z Shell..."
+ln -sf "{{ config_root }}/zsh/.zshrc" "$HOME/.zshrc"
+chmod 755 /opt/homebrew/share
+"""
+
+[tasks.gitconfig]
+description = "set up gitconfig (interactive)"
+run = """
+#!/usr/bin/env bash
+echo "setting up gitconfig..."
+mkdir -p "$HOME/go/src"
+read -p "Enter your name: " name
+read -p "Enter your email: " email
+sed -e "s/Hoge Fuga/$name/" -e "s/hoge@example.com/$email/" -e "s/hogehogehoge/$USER/" "{{ config_root }}/git/gitconfig.template" > "$HOME/.gitconfig"
+"""
+
+[tasks.karabiner]
+description = "set up Karabiner-Elements"
+run = """
+#!/usr/bin/env bash
+echo "setting up Karabiner-Elements..."
+mkdir -p "$HOME/.config/karabiner"
+ln -sf "{{ config_root }}/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+"""
+
+[tasks.vscode]
+description = "set up Visual Studio Code"
+run = """
+#!/usr/bin/env bash
+echo "setting up Visual Studio Code..."
+ln -sf "{{ config_root }}/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+"""
+
+[tasks.postgres]
+description = "set up .psqlrc"
+run = """
+#!/usr/bin/env bash
+echo "setting up .psqlrc..."
+ln -sf "{{ config_root }}/postgres/.psqlrc" "$HOME/.psqlrc"
+"""
+
+[tasks.macos]
+description = "apply macOS system defaults"
+run = """
+#!/usr/bin/env bash
+echo "applying macOS system defaults..."
+sh -x "{{ config_root }}/scripts/macos.sh"
+"""
+
+[tasks.bin]
+description = "set up personal commands"
+run = """
+#!/usr/bin/env bash
+echo "setting up personal commands..."
+mkdir -p "$HOME/bin"
+for file in "{{ config_root }}/bin/"*; do
+  if [ -f "$file" ] && [ -x "$file" ] && [ "$(basename "$file")" != "README.md" ]; then
+    echo "Linking $(basename "$file")..."
+    ln -sf "$file" "$HOME/bin/$(basename "$file")"
+  fi
+done
+"""
+
+[tasks.claude]
+description = "set up Claude Claude configuration"
+run = """
+#!/usr/bin/env bash
+echo "setting up Claude Code configuration..."
+mkdir -p "$HOME/.claude"
+ln -sf "{{ config_root }}/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+"""
+
+[tasks.claude_commands]
+description = "set up Claude Claude commands"
+run = """
+#!/usr/bin/env bash
+echo "setting up Claude Code commands..."
+mkdir -p "$HOME/.claude/commands"
+for file in "{{ config_root }}/claude/commands/"*.md; do
+  if [ -f "$file" ]; then
+    echo "linking $(basename "$file")..."
+    ln -sf "$file" "$HOME/.claude/commands/$(basename "$file")"
+  fi
+done
+"""
+
+[tasks.install]
+description = "install mise tools"
+depends = ["mise-link"]
+run = "mise install"
+
+[tasks.help]
+description = "show available tasks"
+run = "mise tasks"
