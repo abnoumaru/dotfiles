@@ -126,5 +126,8 @@
       }
     ]
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "enabledPlugins": {
+    "ai-commit@git-ai-commit-plugins": true
+  }
 }
