@@ -26,7 +26,6 @@ mise tasks      # show available tasks
 | `mise/` | Tool version management |
 | `neovim/` | Editor configuration |
 | `postgres/` | psqlrc configuration |
-| `scripts/` | System setup scripts |
 | `starship/` | Shell prompt |
 | `vscode/` | VS Code settings |
 | `wezterm/` | Terminal emulator |

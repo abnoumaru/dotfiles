@@ -118,8 +118,26 @@ ln -sf "{{ config_root }}/postgres/.psqlrc" "$HOME/.psqlrc"
 description = "apply macOS system defaults"
 run = """
 #!/usr/bin/env bash
+set -ex
 echo "applying macOS system defaults..."
-sh -x "{{ config_root }}/scripts/macos.sh"
+
+# Show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Auto-hide Dock
+defaults write com.apple.dock autohide -bool true
+
+# Set keyboard repeat rate to fastest
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Change screenshot save location
+mkdir -p "${HOME}/screenshots"
+defaults write com.apple.screencapture location "${HOME}/screenshots"
+
+# Restart affected processes to apply changes
+killall Finder
+killall Dock
 """
 
 [tasks.bin]
