@@ -19,6 +19,7 @@ mise tasks      # show available tasks
 
 | Directory | Description |
 |-----------|-------------|
+| `aerospace/` | Tiling window manager |
 | `bin/` | Personal scripts (linked to ~/bin/) |
 | `claude/` | Claude Code configuration |
 | `git/` | Git configuration template |

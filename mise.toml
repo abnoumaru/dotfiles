@@ -12,6 +12,7 @@ depends = [
   "karabiner",
   "vscode",
   "postgres",
+  "aerospace",
   "bin",
   "claude",
   "claude_commands",
@@ -112,6 +113,14 @@ run = """
 #!/usr/bin/env bash
 echo "setting up .psqlrc..."
 ln -sf "{{ config_root }}/postgres/.psqlrc" "$HOME/.psqlrc"
+"""
+
+[tasks.aerospace]
+description = "set up AeroSpace"
+run = """
+#!/usr/bin/env bash
+echo "setting up AeroSpace..."
+ln -sf "{{ config_root }}/aerospace/aerospace.toml" "$HOME/.aerospace.toml"
 """
 
 [tasks.macos]
