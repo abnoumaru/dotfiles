@@ -14,8 +14,9 @@ depends = [
   "postgres",
   "aerospace",
   "bin",
+  "claude-install",
   "claude",
-  "claude_commands",
+  "claude-commands",
 ]
 
 [tasks.mise-link]
@@ -36,7 +37,7 @@ ln -sf "{{ config_root }}/Brewfile" "$HOME/Brewfile"
 brew bundle
 """
 
-[tasks.brew_dump]
+[tasks.brew-dump]
 description = "dump current Brewfile"
 run = """
 #!/usr/bin/env bash
@@ -163,6 +164,19 @@ for file in "{{ config_root }}/bin/"*; do
 done
 """
 
+[tasks.claude-install]
+description = "install Claude CLI if not installed"
+run = """
+#!/usr/bin/env bash
+echo "checking Claude CLI installation..."
+if ! command -v claude &> /dev/null; then
+  echo "Claude CLI not found, installing..."
+  curl -fsSL https://claude.ai/install.sh | bash
+else
+  echo "Claude CLI is already installed"
+fi
+"""
+
 [tasks.claude]
 description = "set up Claude Claude configuration"
 run = """
@@ -172,7 +186,7 @@ mkdir -p "$HOME/.claude"
 ln -sf "{{ config_root }}/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 """
 
-[tasks.claude_commands]
+[tasks.claude-commands]
 description = "set up Claude Claude commands"
 run = """
 #!/usr/bin/env bash
