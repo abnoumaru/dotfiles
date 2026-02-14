@@ -1,6 +1,3 @@
-# ================================
-#        Basic Shell Settings
-# ================================
 # Encoding
 setopt print_eight_bit
 
@@ -13,9 +10,6 @@ setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt share_history
 
-# ================================
-#         Completions
-# ================================
 # Homebrew completions
 if type brew &>/dev/null; then
   if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
@@ -29,9 +23,6 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# ================================
-#         Environment Variables
-# ================================
 # Basic paths
 export GPG_TTY=$(tty)
 export PATH=~/bin:$PATH
@@ -48,7 +39,6 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(rbenv init -)"
 
 # Claude Code settings
-export DISABLE_INTERLEAVED_THINKING=1
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
 
 # Other tools
@@ -74,16 +64,11 @@ export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
-# ================================
-#         Tool Initializations
-# ================================
+# Tool Initializations
 eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(uv generate-shell-completion zsh)"
 
-# ================================
-#         Aliases
-# ================================
 # ls colors for macOS
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -95,15 +80,9 @@ alias d="git diff"
 alias st="git status -sb"
 alias sw="git switch"
 
-alias gc="gcloud config list"
-alias k=kubectl
-alias m="curl -s https://httpbin.org/ip | jq ."
 alias vim=nvim
 alias zs="source ~/.zshrc"
 
-# ================================
-#         Functions & Keybindings
-# ================================
 # Copy command output and the command itself to clipboard
 cmdcp() {
   local cmd="$@"
@@ -135,73 +114,6 @@ function _fzf-select-history() {
 }
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
-
-# Repository file edit
-function _fzf-repo-edit() {
-  local exclude_dirs=(
-    ".git"
-    "node_modules"
-    ".next"
-    "dist"
-    "build"
-    "coverage"
-    ".cache"
-    "vendor"
-    "__pycache__"
-    ".pytest_cache"
-    ".mypy_cache"
-    ".tox"
-    ".venv"
-    "venv"
-    ".env"
-  )
-
-  local exclude_pattern=""
-  for dir in "${exclude_dirs[@]}"; do
-    exclude_pattern="$exclude_pattern -name '$dir' -prune -o"
-  done
-
-  local out=$(eval "find . $exclude_pattern -type f -print" | fzf --expect=ctrl-o --preview 'bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || cat {}' --preview-window=right:60%)
-
-  local key=$(echo "$out" | head -1)
-  local selected=$(echo "$out" | tail -n +2)
-
-  if [ -n "$selected" ]; then
-    if [ "$key" = "ctrl-o" ]; then
-      local remote_url=$(git remote get-url origin 2>/dev/null)
-      if [ -n "$remote_url" ]; then
-        local github_url=$(echo "$remote_url" | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
-        local branch=$(git branch --show-current 2>/dev/null || echo "main")
-        local relative_path="${selected#./}"
-        local file_url="${github_url}/blob/${branch}/${relative_path}"
-        open "$file_url"
-      else
-        echo "Git remote not found"
-      fi
-    else
-      echo -n "$selected" | pbcopy
-      vim "$selected" < /dev/tty > /dev/tty
-    fi
-  fi
-  zle reset-prompt
-}
-zle -N _fzf-repo-edit
-bindkey '^f' _fzf-repo-edit
-
-# knqyf263/pet
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^s' pet-select
 
 function gen-ai-commit-msg() {
   local DIFF AI_COMMIT_MSG COMMIT_FILE RAW
