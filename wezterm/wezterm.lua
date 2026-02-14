@@ -38,8 +38,8 @@ end
 ----------------------------------------------------------
 
 -- Visualization
-config.color_scheme = 'Oceanic Next (Gogh)'
-config.font = wezterm.font 'JetBrains Mono'
+config.color_scheme = 'Tokyo Night Storm'
+config.font = wezterm.font 'Monaspace Argon'
 config.harfbuzz_features = { 'calt=0' }
 config.window_background_opacity = 0.92
 config.window_decorations = "RESIZE"
