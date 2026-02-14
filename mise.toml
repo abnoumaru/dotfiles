@@ -43,7 +43,7 @@ description = "dump current Brewfile"
 run = """
 #!/usr/bin/env bash
 echo "dumping the current Brewfile..."
-brew bundle dump --force
+brew bundle dump --no-vscode --no-go --force
 """
 
 [tasks.wezterm]
