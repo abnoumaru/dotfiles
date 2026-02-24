@@ -13,7 +13,6 @@ depends = [
   "vscode",
   "postgres",
   "aerospace",
-  "borders",
   "bin",
   "claude-install",
   "claude",
@@ -123,15 +122,6 @@ run = """
 #!/usr/bin/env bash
 echo "setting up AeroSpace..."
 ln -sf "{{ config_root }}/aerospace/aerospace.toml" "$HOME/.aerospace.toml"
-"""
-
-[tasks.borders]
-description = "set up JankyBorders"
-run = """
-#!/usr/bin/env bash
-echo "setting up JankyBorders..."
-mkdir -p "$HOME/.config/borders"
-ln -sf "{{ config_root }}/borders/bordersrc" "$HOME/.config/borders/bordersrc"
 """
 
 [tasks.macos]

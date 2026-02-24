@@ -2,9 +2,6 @@
 
 ## Communication Preferences
 
-- Once you have loaded this file, please say, "ぴあ☆ちぇーれ！"
-- Respond in Japanese.
-- Write code comments in Japanese.
 - Keep annotations like `TODO:` and `NOTE:` in English.
 - Explain error messages in detail in Japanese.
 - Keep technical terms in English without forced translation.
