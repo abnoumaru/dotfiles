@@ -16,7 +16,6 @@ depends = [
   "bin",
   "claude-install",
   "claude",
-  "claude-commands",
 ]
 
 [tasks.mise-link]
@@ -184,20 +183,6 @@ run = """
 echo "setting up Claude Code configuration..."
 mkdir -p "$HOME/.claude"
 ln -sf "{{ config_root }}/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-"""
-
-[tasks.claude-commands]
-description = "set up Claude Claude commands"
-run = """
-#!/usr/bin/env bash
-echo "setting up Claude Code commands..."
-mkdir -p "$HOME/.claude/commands"
-for file in "{{ config_root }}/claude/commands/"*.md; do
-  if [ -f "$file" ]; then
-    echo "linking $(basename "$file")..."
-    ln -sf "$file" "$HOME/.claude/commands/$(basename "$file")"
-  fi
-done
 """
 
 [tasks.install]
