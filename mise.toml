@@ -183,6 +183,7 @@ run = """
 echo "setting up Claude Code configuration..."
 mkdir -p "$HOME/.claude"
 ln -sf "{{ config_root }}/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+ln -sf "{{ config_root }}/claude/settings.json" "$HOME/.claude/settings.json"
 """
 
 [tasks.install]
