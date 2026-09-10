@@ -14,6 +14,7 @@
     "GOPATH": "~/go",
     "NODE_OPTIONS": "--max-old-space-size=4096"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -106,5 +107,9 @@
   },
   "tui": "fullscreen",
   "theme": "dark-daltonized",
-  "includeCoAuthoredBy": false
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
 }
