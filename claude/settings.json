@@ -6,12 +6,7 @@
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "BASH_MAX_TIMEOUT_MS": "1200000",
     "MAX_THINKING_TOKENS": "200000",
-    "UV_CACHE_DIR": "~/.cache/uv",
     "UV_PYTHON_PREFERENCE": "managed",
-    "DENO_DIR": "~/.cache/deno",
-    "CARGO_HOME": "~/.cargo",
-    "RUSTUP_HOME": "~/.rustup",
-    "GOPATH": "~/go",
     "NODE_OPTIONS": "--max-old-space-size=4096"
   },
   "includeCoAuthoredBy": false,
