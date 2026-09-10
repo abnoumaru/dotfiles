@@ -102,6 +102,11 @@
   },
   "tui": "fullscreen",
   "theme": "dark-daltonized",
+  "statusLine": {
+    "type": "command",
+    "command": "ccstatus",
+    "padding": 0
+  },
   "modelSettings": {
     "claude-opus-5": {
       "effortLevel": "medium"
