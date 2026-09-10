@@ -9,7 +9,11 @@
     "UV_PYTHON_PREFERENCE": "managed",
     "NODE_OPTIONS": "--max-old-space-size=4096"
   },
-  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "allow": [
       "Bash(ls:*)",
