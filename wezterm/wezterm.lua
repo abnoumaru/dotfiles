@@ -39,7 +39,12 @@ end
 
 -- Visualization
 config.color_scheme = 'Tokyo Night Storm'
-config.font = wezterm.font 'Monaspace Argon'
+config.font = wezterm.font_with_fallback {
+  'Monaspace Argon',
+  'Hiragino Sans',
+  'Apple Color Emoji',
+  'Apple Symbols',
+}
 config.harfbuzz_features = { 'calt=0' }
 config.window_background_opacity = 0.92
 config.window_decorations = "RESIZE"
