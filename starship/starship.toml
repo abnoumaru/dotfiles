@@ -28,7 +28,7 @@ Macos = " "
 style = "fg:#39FF14"
 format = "[ $path]($style)"
 truncate_to_repo = false
-truncation_length = 2
+truncation_length = 1
 truncation_symbol = "…/"
 
 [nodejs]
