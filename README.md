@@ -22,6 +22,7 @@ mise tasks      # show available tasks
 | `aerospace/` | Tiling window manager |
 | `bin/` | Personal scripts (linked to ~/bin/) |
 | `claude/` | Claude Code configuration |
+| `ghostty/` | Terminal emulator |
 | `git/` | Git configuration template |
 | `karabiner/` | Keyboard remapping |
 | `mise/` | Tool version management |

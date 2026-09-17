@@ -1,0 +1,24 @@
+# Visualization
+theme = TokyoNight Storm
+font-family = Monaspace Argon
+font-feature = -calt
+background-opacity = 0.92
+# NOTE: not `hidden` -- macOS native tabs require the titlebar, so new_tab
+# falls back to opening a new window.
+macos-titlebar-style = transparent
+
+# Key maps (ctrl+t as leader)
+keybind = ctrl+t>f=toggle_fullscreen
+
+# Switch Tab
+keybind = ctrl+t>c=new_tab
+keybind = ctrl+t>q=close_tab
+keybind = ctrl+t>n=next_tab
+keybind = ctrl+t>p=previous_tab
+
+# Split Pane
+keybind = ctrl+t>|=new_split:right
+keybind = ctrl+t>-=new_split:down
+
+# for Claude Code
+keybind = shift+enter=text:\n

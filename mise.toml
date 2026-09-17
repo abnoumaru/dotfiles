@@ -6,6 +6,7 @@ depends = [
   "mise-link",
   "brew",
   "wezterm",
+  "ghostty",
   "neovim",
   "starship",
   "zsh",
@@ -51,6 +52,15 @@ run = """
 echo "Setting up WezTerm..."
 mkdir -p "$HOME/.config/wezterm"
 ln -sf "{{ config_root }}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+"""
+
+[tasks.ghostty]
+description = "set up Ghostty"
+run = """
+#!/usr/bin/env bash
+echo "setting up Ghostty..."
+mkdir -p "$HOME/.config/ghostty"
+ln -sf "{{ config_root }}/ghostty/config" "$HOME/.config/ghostty/config"
 """
 
 [tasks.neovim]
