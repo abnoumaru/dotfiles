@@ -48,10 +48,10 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # fzf configuration
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-  --color=fg:#d0d0d0,fg+:#d0d0d0,bg:-1,bg+:#262626
-  --color=hl:#5f87af,hl+:#5fd7ff,info:#afaf87,marker:#87ff00
-  --color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf
-  --color=border:#262626,label:#aeaeae,query:#d9d9d9
+  --color=fg:#c5c9c5,fg+:#c5c9c5,bg:-1,bg+:#282727
+  --color=hl:#8ba4b0,hl+:#8ea4a2,info:#c4b28a,marker:#87a987
+  --color=prompt:#c4746e,spinner:#8992a7,pointer:#8992a7,header:#949fb5
+  --color=border:#393836,label:#a6a69c,query:#c5c9c5
   --border="rounded" --border-label="" --preview-window="border-bold" --prompt=">>> "
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
