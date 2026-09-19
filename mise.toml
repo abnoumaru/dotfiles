@@ -5,7 +5,6 @@ description = "run all setup tasks"
 depends = [
   "mise-link",
   "brew",
-  "wezterm",
   "ghostty",
   "neovim",
   "starship",
@@ -42,15 +41,6 @@ run = """
 #!/usr/bin/env bash
 echo "dumping the current Brewfile..."
 brew bundle dump --no-vscode --no-go --force
-"""
-
-[tasks.wezterm]
-description = "set up WezTerm"
-run = """
-#!/usr/bin/env bash
-echo "Setting up WezTerm..."
-mkdir -p "$HOME/.config/wezterm"
-ln -sf "{{ config_root }}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 """
 
 [tasks.ghostty]

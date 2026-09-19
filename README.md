@@ -29,7 +29,6 @@ mise tasks      # show available tasks
 | `postgres/` | psqlrc configuration |
 | `starship/` | Shell prompt |
 | `vscode/` | VS Code settings |
-| `wezterm/` | Terminal emulator |
 | `zsh/` | Shell configuration |
 
 ## References
@@ -38,4 +37,3 @@ mise tasks      # show available tasks
 - https://gist.github.com/sheepla/d680f1480d8c36c4290d6aabebf1abc6
 - https://zenn.dev/monica/articles/81c8f632b72584
 - https://zenn.dev/nokogiri/articles/ec99e40df54555
-- https://zenn.dev/mozumasu/articles/mozumasu-wezterm-customization

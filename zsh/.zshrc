@@ -133,26 +133,6 @@ function gen-ai-commit-msg() {
   echo "愛季「あーコミットメッセージかぁ。あいでぃに任せて！」"
   echo
 
-  if command -v wezterm &> /dev/null; then
-    ZSHRC_FILE="${(%):-%x}"
-    if [ -L "$ZSHRC_FILE" ]; then
-      ZSHRC_FILE=$(readlink "$ZSHRC_FILE")
-    fi
-    DOTFILES_DIR=$(cd "$(dirname "$ZSHRC_FILE")" && pwd)
-    IMAGES_DIR="${DOTFILES_DIR}/images"
-    if [ -d "${IMAGES_DIR}" ]; then
-      # Find all GIF files and select one randomly
-      GIF_FILES=("${IMAGES_DIR}"/*.gif)
-      if [ -f "${GIF_FILES[1]}" ]; then
-        # Select random GIF file
-        RANDOM_GIF=$(printf '%s\n' "${GIF_FILES[@]}" | shuf -n 1)
-        if [ -f "${RANDOM_GIF}" ]; then
-          wezterm imgcat "${RANDOM_GIF}" 2>/dev/null || true
-        fi
-      fi
-    fi
-  fi
-
   RAW=$(
     {
       cat <<'PROMPT'
