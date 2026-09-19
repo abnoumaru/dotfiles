@@ -124,6 +124,9 @@
     },
     "claude-fable-5-1": {
       "effortLevel": "medium"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
     }
   },
   "tui": "fullscreen",
