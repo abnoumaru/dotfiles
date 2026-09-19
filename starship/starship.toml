@@ -13,19 +13,19 @@ $git_commit
 
 [username]
 show_always = false
-style_user = "fg:#00FFFF"
-style_root = "fg:#FF0000"
+style_user = "fg:#c4b28a"
+style_root = "fg:#c4746e"
 format = '[$user ]($style)'
 
 [os]
-style = "fg:#FF00FF"
+style = "fg:#8992a7"
 disabled = false
 
 [os.symbols]
 Macos = " "
 
 [directory]
-style = "fg:#39FF14"
+style = "fg:#8ba4b0"
 format = "[ $path]($style)"
 truncate_to_repo = false
 truncation_length = 1
@@ -33,37 +33,37 @@ truncation_symbol = "…/"
 
 [nodejs]
 symbol = "󰎙 "
-style = "fg:#00FF00"
+style = "fg:#87a987"
 format = '[ $symbol($version)]($style)'
 
 [python]
 symbol = " "
-style = "fg:#FFFF00"
+style = "fg:#c4b28a"
 format = '[ $symbol($version)]($style)'
 
 [ruby]
 symbol = " "
-style = "fg:#FF1493"
+style = "fg:#a292a3"
 format = '[ $symbol($version)]($style)'
 detect_folders = ['.rbenv/']
 
 [terraform]
 symbol = ""
-style = "fg:#BF00FF"
+style = "fg:#8ea4a2"
 format = '[ $symbol($version)]($style)'
 detect_files = ['.tflint.hcl']
 
 [git_branch]
 symbol = " "
-style = "fg:#00BFFF"
+style = "fg:#949fb5"
 format = '[$symbol\[$branch\] ]($style)'
 
 [git_status]
-style = "fg:#FF6600"
+style = "fg:#b6927b"
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_commit]
-style = "fg:#FF00FF"
+style = "fg:#a292a3"
 tag_symbol = ' ->  '
 format = '[$hash$tag ]($style)'
 only_detached = false
