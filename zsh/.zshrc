@@ -38,6 +38,8 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(rbenv init -)"
 
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
 # Claude Code settings
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
 
