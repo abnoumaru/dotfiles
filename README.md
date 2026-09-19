@@ -28,7 +28,6 @@ mise tasks      # show available tasks
 | `neovim/` | Editor configuration |
 | `postgres/` | psqlrc configuration |
 | `starship/` | Shell prompt |
-| `vscode/` | VS Code settings |
 | `zsh/` | Shell configuration |
 
 ## References

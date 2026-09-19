@@ -10,7 +10,6 @@ depends = [
   "starship",
   "zsh",
   "karabiner",
-  "vscode",
   "postgres",
   "bin",
   "claude-install",
@@ -96,14 +95,6 @@ run = """
 echo "setting up Karabiner-Elements..."
 mkdir -p "$HOME/.config/karabiner"
 ln -sf "{{ config_root }}/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
-"""
-
-[tasks.vscode]
-description = "set up Visual Studio Code"
-run = """
-#!/usr/bin/env bash
-echo "setting up Visual Studio Code..."
-ln -sf "{{ config_root }}/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 """
 
 [tasks.postgres]
