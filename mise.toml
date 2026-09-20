@@ -7,6 +7,7 @@ depends = [
   "brew",
   "ghostty",
   "neovim",
+  "zed",
   "starship",
   "zsh",
   "karabiner",
@@ -58,6 +59,15 @@ run = """
 echo "setting up Neovim..."
 mkdir -p "$HOME/.config/nvim"
 ln -sf "{{ config_root }}/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+"""
+
+[tasks.zed]
+description = "set up Zed"
+run = """
+#!/usr/bin/env bash
+echo "setting up Zed..."
+mkdir -p "$HOME/.config/zed"
+ln -sf "{{ config_root }}/zed/settings.json" "$HOME/.config/zed/settings.json"
 """
 
 [tasks.starship]

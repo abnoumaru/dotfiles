@@ -28,6 +28,7 @@ mise tasks      # show available tasks
 | `neovim/` | Editor configuration |
 | `postgres/` | psqlrc configuration |
 | `starship/` | Shell prompt |
+| `zed/` | Zed editor configuration |
 | `zsh/` | Shell configuration |
 
 ## References

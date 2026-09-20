@@ -1,0 +1,53 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "sidebar_side": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400.0,
+  "proxy": "",
+  "disable_ai": false,
+  "terminal": {
+    "font_family": "FiraCode Nerd Font",
+    "font_fallbacks": [
+      "monospace"
+    ]
+  },
+  "base_keymap": "VSCode",
+  "minimap": {
+    "show": "always"
+  },
+  "buffer_font_fallbacks": [
+    "FiraCode Nerd Font",
+    "monospace"
+  ],
+  "buffer_font_family": "JetBrains Mono",
+  "auto_indent_on_paste": true,
+  "show_edit_predictions": true,
+  "ensure_final_newline_on_save": true,
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
+      "type": "registry"
+    }
+  },
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 10.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Kanagawa Lotus",
+    "dark": "Kanagawa Dragon",
+  },
+}
