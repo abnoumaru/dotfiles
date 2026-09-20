@@ -12,6 +12,7 @@ Thumbs.db
 # Ignore specific directories
 /tmp/
 /cache/
+/.zed/
 
 # Ignore local configuration files (may contain sensitive info like passwords)
 .local
