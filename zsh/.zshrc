@@ -2,6 +2,7 @@
 setopt print_eight_bit
 
 # History
+# ref: https://zenn.dev/botamotch/articles/e7960f0dc84d8b
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -80,6 +81,7 @@ cmdcp() {
   echo "✓ Copied to clipboard"
 }
 # ghq repository selection
+# ref: https://gist.github.com/sheepla/d680f1480d8c36c4290d6aabebf1abc6
 function _fzf_cd_ghq() {
   FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
   local root="$(ghq root)"
@@ -93,6 +95,7 @@ zle -N _fzf_cd_ghq
 bindkey "^h" _fzf_cd_ghq
 
 # History selection
+# ref: https://zenn.dev/nokogiri/articles/ec99e40df54555
 function _fzf-select-history() {
   BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
   CURSOR=$#BUFFER
