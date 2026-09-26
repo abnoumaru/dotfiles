@@ -34,14 +34,6 @@ brew bundle --file="{{ config_root }}/Brewfile"
 chmod 755 /opt/homebrew/share
 """
 
-[tasks.brew-dump]
-description = "dump current Brewfile"
-run = """
-#!/usr/bin/env bash
-echo "dumping the current Brewfile..."
-brew bundle dump --file="{{ config_root }}/Brewfile" --no-vscode --no-go --force
-"""
-
 [tasks.gitconfig]
 description = "set up gitconfig (interactive)"
 run = """
