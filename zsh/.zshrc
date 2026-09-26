@@ -25,7 +25,6 @@ fi
 
 # Basic paths
 export GPG_TTY=$(tty)
-export PATH=~/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
 
 # Development tools
