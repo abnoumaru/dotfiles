@@ -1,5 +1,4 @@
 tap "abue-ammar/tinycast", trusted: true
-tap "cloudflare/cloudflare"
 tap "databricks/tap"
 tap "fairwindsops/tap", "https://github.com/FairwindsOps/homebrew-tap"
 tap "homebrew/bundle"
@@ -15,10 +14,6 @@ brew "coreutils"
 brew "docker-compose"
 # Platform keystore credential helper for Docker
 brew "docker-credential-helper"
-# Command-line fuzzy finder written in Go
-brew "fzf"
-# Remote repository management made easy
-brew "ghq"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Postgres C API library
@@ -45,8 +40,6 @@ brew "tree"
 brew "wget"
 # Additional completion definitions for zsh
 brew "zsh-completions"
-# Utility to export your existing Cloudflare resources as Terraform resources
-brew "cloudflare/cloudflare/cf-terraforming", trusted: true
 cask "aerospace"
 # Free and open-source web browser
 cask "chromium"
