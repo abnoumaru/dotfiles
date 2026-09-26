@@ -1,7 +1,6 @@
-# Homebrew is for GUI apps, fonts, and formulae mise cannot replace.
-# Command-line tools belong in mise/config.toml.
+# Homebrew is for formulae mise cannot replace and casks with a pkg installer.
+# Command-line tools belong in mise/config.toml, other casks in mise.toml.
 
-tap "abue-ammar/tinycast", trusted: true
 tap "jorgelbg/tap", trusted: true
 tap "yukiarrr/tap", trusted: true
 
@@ -27,20 +26,8 @@ brew "yukiarrr/tap/ecsk", trusted: true
 # The GitHub release nests the binary where mise's github backend cannot find it
 brew "rubyfmt"
 
-# Apps
-cask "chromium"
-cask "fontbase"
-cask "ghostty"
-cask "google-chrome@dev"
+# pkg installers need sudo, which mise refuses
 cask "google-japanese-ime"
 cask "karabiner-elements"
-cask "rancher"
 cask "session-manager-plugin"
-cask "slack"
-cask "spotify"
-cask "abue-ammar/tinycast/tinycast", trusted: true
 cask "twingate"
-
-# Fonts
-cask "font-fira-code-nerd-font"
-cask "font-monaspace"

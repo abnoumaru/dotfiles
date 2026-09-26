@@ -1,5 +1,21 @@
 # NOTE: Run `mise bootstrap` in the dotfiles directory
 
+# Casks with a pkg installer are in the Brewfile.
+[bootstrap.packages]
+"brew-cask:chromium" = "latest"
+"brew-cask:fontbase" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:google-chrome@dev" = "latest"
+"brew-cask:rancher" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:spotify" = "latest"
+"brew-cask:abue-ammar/tinycast/tinycast" = "latest"
+"brew-cask:font-fira-code-nerd-font" = "latest"
+"brew-cask:font-monaspace" = "latest"
+
+[bootstrap.brew.taps]
+"abue-ammar/tinycast" = "https://github.com/abue-ammar/homebrew-tinycast.git"
+
 [dotfiles]
 "~/.config/mise/config.toml" = "mise/config.toml"
 "~/Brewfile" = "Brewfile"
