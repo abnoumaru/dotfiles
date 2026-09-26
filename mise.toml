@@ -1,38 +1,37 @@
-# NOTE: Run `mise run <task>` in the dotfiles directory
+# NOTE: Run `mise bootstrap` in the dotfiles directory
 
-[tasks.all]
-description = "run all setup tasks"
-depends = [
-  "mise-link",
-  "brew",
-  "ghostty",
-  "neovim",
-  "zed",
-  "starship",
-  "zsh",
-  "karabiner",
-  "postgres",
-  "bin",
-  "claude-install",
-  "claude",
+[dotfiles]
+"~/.config/mise/config.toml" = "mise/config.toml"
+"~/Brewfile" = "Brewfile"
+"~/.zshrc" = "zsh/.zshrc"
+"~/.config/starship.toml" = "starship/starship.toml"
+"~/.config/ghostty/config" = "ghostty/config"
+"~/.config/nvim/init.lua" = "neovim/init.lua"
+"~/.config/zed/settings.json" = "zed/settings.json"
+"~/.psqlrc" = "postgres/.psqlrc"
+"~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
+"~/.claude/settings.json" = "claude/settings.json"
+# Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
+"~/.config/karabiner" = "karabiner"
+
+# mise refuses to replace a target it did not create, so a real directory left by Karabiner is moved aside.
+[bootstrap.hooks.pre-dotfiles]
+run = [
+  'target="$HOME/.config/karabiner"; if [ -e "$target" ] && [ ! -L "$target" ]; then mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"; fi',
 ]
 
-[tasks.mise-link]
-description = "create symlink for mise config"
-run = """
-#!/usr/bin/env bash
-echo "setting up mise config symlink..."
-mkdir -p "$HOME/.config/mise"
-ln -sf "{{ config_root }}/mise/config.toml" "$HOME/.config/mise/config.toml"
-"""
+# Runs last in `mise bootstrap`.
+[tasks.bootstrap]
+description = "run the setup steps mise bootstrap cannot declare"
+depends = ["brew", "claude-install"]
 
 [tasks.brew]
 description = "set up Homebrew"
 run = """
 #!/usr/bin/env bash
 echo "setting up Homebrew..."
-ln -sf "{{ config_root }}/Brewfile" "$HOME/Brewfile"
-brew bundle
+brew bundle --file="{{ config_root }}/Brewfile"
+chmod 755 /opt/homebrew/share
 """
 
 [tasks.brew-dump]
@@ -40,51 +39,7 @@ description = "dump current Brewfile"
 run = """
 #!/usr/bin/env bash
 echo "dumping the current Brewfile..."
-brew bundle dump --no-vscode --no-go --force
-"""
-
-[tasks.ghostty]
-description = "set up Ghostty"
-run = """
-#!/usr/bin/env bash
-echo "setting up Ghostty..."
-mkdir -p "$HOME/.config/ghostty"
-ln -sf "{{ config_root }}/ghostty/config" "$HOME/.config/ghostty/config"
-"""
-
-[tasks.neovim]
-description = "set up Neovim"
-run = """
-#!/usr/bin/env bash
-echo "setting up Neovim..."
-mkdir -p "$HOME/.config/nvim"
-ln -sf "{{ config_root }}/neovim/init.lua" "$HOME/.config/nvim/init.lua"
-"""
-
-[tasks.zed]
-description = "set up Zed"
-run = """
-#!/usr/bin/env bash
-echo "setting up Zed..."
-mkdir -p "$HOME/.config/zed"
-ln -sf "{{ config_root }}/zed/settings.json" "$HOME/.config/zed/settings.json"
-"""
-
-[tasks.starship]
-description = "set up Starship"
-run = """
-#!/usr/bin/env bash
-echo "setting up Starship..."
-ln -sf "{{ config_root }}/starship/starship.toml" "$HOME/.config/starship.toml"
-"""
-
-[tasks.zsh]
-description = "set up Z Shell"
-run = """
-#!/usr/bin/env bash
-echo "setting up Z Shell..."
-ln -sf "{{ config_root }}/zsh/.zshrc" "$HOME/.zshrc"
-chmod 755 /opt/homebrew/share
+brew bundle dump --file="{{ config_root }}/Brewfile" --no-vscode --no-go --force
 """
 
 [tasks.gitconfig]
@@ -96,28 +51,6 @@ mkdir -p "$HOME/go/src"
 read -p "Enter your name: " name
 read -p "Enter your email: " email
 sed -e "s/Hoge Fuga/$name/" -e "s/hoge@example.com/$email/" -e "s/hogehogehoge/$USER/" "{{ config_root }}/git/gitconfig.template" > "$HOME/.gitconfig"
-"""
-
-[tasks.karabiner]
-description = "set up Karabiner-Elements"
-run = """
-#!/usr/bin/env bash
-echo "setting up Karabiner-Elements..."
-# Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
-target="$HOME/.config/karabiner"
-if [ -e "$target" ] && [ ! -L "$target" ]; then
-  mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"
-fi
-ln -sfn "{{ config_root }}/karabiner" "$target"
-launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.Karabiner-Console-User-Server" || true
-"""
-
-[tasks.postgres]
-description = "set up .psqlrc"
-run = """
-#!/usr/bin/env bash
-echo "setting up .psqlrc..."
-ln -sf "{{ config_root }}/postgres/.psqlrc" "$HOME/.psqlrc"
 """
 
 [tasks.macos]
@@ -146,20 +79,6 @@ killall Finder
 killall Dock
 """
 
-[tasks.bin]
-description = "set up personal commands"
-run = """
-#!/usr/bin/env bash
-echo "setting up personal commands..."
-mkdir -p "$HOME/bin"
-for file in "{{ config_root }}/bin/"*; do
-  if [ -f "$file" ] && [ -x "$file" ] && [ "$(basename "$file")" != "README.md" ]; then
-    echo "Linking $(basename "$file")..."
-    ln -sf "$file" "$HOME/bin/$(basename "$file")"
-  fi
-done
-"""
-
 [tasks.claude-install]
 description = "install Claude CLI if not installed"
 run = """
@@ -172,21 +91,6 @@ else
   echo "Claude CLI is already installed"
 fi
 """
-
-[tasks.claude]
-description = "set up Claude Claude configuration"
-run = """
-#!/usr/bin/env bash
-echo "setting up Claude Code configuration..."
-mkdir -p "$HOME/.claude"
-ln -sf "{{ config_root }}/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-ln -sf "{{ config_root }}/claude/settings.json" "$HOME/.claude/settings.json"
-"""
-
-[tasks.install]
-description = "install mise tools"
-depends = ["mise-link"]
-run = "mise install"
 
 [tasks.help]
 description = "show available tasks"
