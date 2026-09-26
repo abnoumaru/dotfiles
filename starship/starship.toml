@@ -45,7 +45,6 @@ format = '[ $symbol($version)]($style)'
 symbol = " "
 style = "fg:#a292a3"
 format = '[ $symbol($version)]($style)'
-detect_folders = ['.rbenv/']
 
 [terraform]
 symbol = ""
