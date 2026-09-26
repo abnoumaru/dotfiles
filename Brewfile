@@ -24,10 +24,6 @@ brew "luv"
 brew "mise"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
-# Install various Ruby versions and implementations
-brew "ruby-build"
-# Ruby version manager
-brew "rbenv"
 # Ruby autoformatter
 brew "rubyfmt"
 # Send macOS User Notifications from the command-line

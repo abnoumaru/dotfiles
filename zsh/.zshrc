@@ -27,9 +27,6 @@ fi
 export GPG_TTY=$(tty)
 export PATH="$PATH:$HOME/.local/bin"
 
-# Development tools
-eval "$(rbenv init -)"
-
 # Other tools
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
