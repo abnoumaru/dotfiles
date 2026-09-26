@@ -12,17 +12,11 @@ setopt hist_reduce_blanks
 setopt share_history
 
 # Homebrew completions
-if type brew &>/dev/null; then
-  if [ -d "$(brew --prefix)/share/zsh/site-functions" ]; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-  fi
-  if [ -d "$(brew --prefix)/opt/zsh-completion/share/zsh-completions" ]; then
-    FPATH=$(brew --prefix)/opt/zsh-completion/share/zsh-completions:$FPATH
-  fi
-
-  autoload -Uz compinit
-  compinit
-fi
+for dir in /opt/homebrew/share/zsh/site-functions /opt/homebrew/share/zsh-completions; do
+  [ -d "$dir" ] && FPATH="$dir:$FPATH"
+done
+autoload -Uz compinit
+compinit
 
 # Basic paths
 export GPG_TTY=$(tty)
