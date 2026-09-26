@@ -1,6 +1,8 @@
 # dotfiles
 
-macOS dotfiles repository using symbolic links and [mise](https://mise.jdx.dev/) task runner.
+macOS dotfiles repository set up by [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html).
+`mise.toml` declares the dotfile symlinks and macOS defaults; the Brewfile and
+`mise/config.toml` hold the packages and tools.
 
 ## Prerequisites
 
@@ -11,15 +13,26 @@ macOS dotfiles repository using symbolic links and [mise](https://mise.jdx.dev/)
 ## Quick Start
 
 ```bash
-mise run all    # run all setup tasks
-mise tasks      # show available tasks
+mise bootstrap --dry-run   # preview
+mise bootstrap             # dotfiles, macOS defaults, tools, then brew bundle
+mise run gitconfig         # interactive, run once per machine
 ```
+
+## Checking drift
+
+```bash
+mise bootstrap status
+```
+
+- Removals need hands: a dotfile dropped from `[dotfiles]` stays linked
+  (`mise bootstrap dotfiles unapply`), and a dropped macOS default keeps its value.
+- An existing `~/.config/karabiner` directory is moved aside to
+  `~/.config/karabiner.bak.<timestamp>` before linking.
 
 ## Directory Structure
 
 | Directory | Description |
 |-----------|-------------|
-| `bin/` | Personal scripts (linked to ~/bin/) |
 | `claude/` | Claude Code configuration |
 | `ghostty/` | Terminal emulator |
 | `git/` | Git configuration template |
