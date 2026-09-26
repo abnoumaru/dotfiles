@@ -3,8 +3,6 @@ tap "databricks/tap"
 tap "fairwindsops/tap", "https://github.com/FairwindsOps/homebrew-tap"
 tap "homebrew/bundle"
 tap "jorgelbg/tap"
-tap "ngrok/ngrok"
-tap "nikitabobko/tap"
 tap "yukiarrr/tap"
 # GNU debugger for aarch64-elf cross development
 brew "aarch64-elf-gdb"
@@ -40,7 +38,6 @@ brew "tree"
 brew "wget"
 # Additional completion definitions for zsh
 brew "zsh-completions"
-cask "aerospace"
 # Free and open-source web browser
 cask "chromium"
 cask "font-fira-code-nerd-font"
@@ -55,8 +52,6 @@ cask "google-chrome@dev"
 cask "google-japanese-ime"
 # Keyboard customiser
 cask "karabiner-elements"
-# Reverse proxy, secure introspectable tunnels to localhost
-cask "ngrok"
 # Kubernetes and container management on the desktop
 cask "rancher"
 # Plugin for AWS CLI to start and end sessions that connect to managed instances
