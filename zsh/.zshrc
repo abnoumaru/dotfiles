@@ -40,9 +40,6 @@ eval "$(rbenv init -)"
 
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
-# Claude Code settings
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
-
 # Other tools
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
