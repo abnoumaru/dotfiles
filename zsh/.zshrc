@@ -30,8 +30,6 @@ export PATH="$PATH:$HOME/.local/bin"
 # Development tools
 eval "$(rbenv init -)"
 
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-
 # Other tools
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
