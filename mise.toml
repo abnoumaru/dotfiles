@@ -103,8 +103,13 @@ description = "set up Karabiner-Elements"
 run = """
 #!/usr/bin/env bash
 echo "setting up Karabiner-Elements..."
-mkdir -p "$HOME/.config/karabiner"
-ln -sf "{{ config_root }}/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+# Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
+target="$HOME/.config/karabiner"
+if [ -e "$target" ] && [ ! -L "$target" ]; then
+  mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"
+fi
+ln -sfn "{{ config_root }}/karabiner" "$target"
+launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.Karabiner-Console-User-Server" || true
 """
 
 [tasks.postgres]
