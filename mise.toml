@@ -53,15 +53,46 @@ read -p "Enter your email: " email
 sed -e "s/Hoge Fuga/$name/" -e "s/hoge@example.com/$email/" -e "s/hogehogehoge/$USER/" "{{ config_root }}/git/gitconfig.template" > "$HOME/.gitconfig"
 """
 
-[bootstrap.macos.defaults."com.apple.finder"]
-AppleShowAllFiles = true
-
-[bootstrap.macos.defaults."com.apple.dock"]
-autohide = true
-
+# Types must match the plist: mise treats 64 and 64.0 as different values.
 [bootstrap.macos.defaults.NSGlobalDomain]
 KeyRepeat = 2
 InitialKeyRepeat = 15
+"com.apple.mouse.scaling" = 0.6875
+"com.apple.scrollwheel.scaling" = 0.5
+shouldShowRSVPDataDetectors = false
+AppleIconAppearanceTheme = "ClearDark"
+AppleHighlightColor = "0.847059 0.847059 0.862745 Graphite"
+
+[bootstrap.macos.defaults."com.apple.finder"]
+AppleShowAllFiles = true
+FXPreferredViewStyle = "Nlsv"
+FXRemoveOldTrashItems = true
+
+[bootstrap.macos.defaults."com.apple.dock"]
+autohide = true
+tilesize = 64.0
+"workspaces-auto-swoosh" = false
+
+[bootstrap.macos.defaults."com.apple.WindowManager"]
+EnableTiledWindowMargins = false
+HideDesktop = true
+AppWindowGroupingBehavior = 1
+
+[bootstrap.macos.defaults."com.apple.menuextra.clock"]
+ShowAMPM = true
+
+# Tap to click is stored for the built-in trackpad, Bluetooth trackpads, and per host.
+[bootstrap.macos.defaults."com.apple.AppleMultitouchTrackpad"]
+Clicking = true
+
+[bootstrap.macos.defaults."com.apple.driver.AppleBluetoothMultitouch.trackpad"]
+Clicking = true
+
+[[bootstrap.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "com.apple.mouse.tapBehavior"
+host = "current"
+value = 1
 
 # Runs on every `mise bootstrap`, changed or not.
 # The screenshot location is written here because defaults values are not templated, so $HOME cannot be declared.
