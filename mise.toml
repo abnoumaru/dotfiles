@@ -53,31 +53,24 @@ read -p "Enter your email: " email
 sed -e "s/Hoge Fuga/$name/" -e "s/hoge@example.com/$email/" -e "s/hogehogehoge/$USER/" "{{ config_root }}/git/gitconfig.template" > "$HOME/.gitconfig"
 """
 
-[tasks.macos]
-description = "apply macOS system defaults"
-run = """
-#!/usr/bin/env bash
-set -ex
-echo "applying macOS system defaults..."
+[bootstrap.macos.defaults."com.apple.finder"]
+AppleShowAllFiles = true
 
-# Show hidden files in Finder
-defaults write com.apple.finder AppleShowAllFiles -bool true
+[bootstrap.macos.defaults."com.apple.dock"]
+autohide = true
 
-# Auto-hide Dock
-defaults write com.apple.dock autohide -bool true
+[bootstrap.macos.defaults.NSGlobalDomain]
+KeyRepeat = 2
+InitialKeyRepeat = 15
 
-# Set keyboard repeat rate to fastest
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-# Change screenshot save location
-mkdir -p "${HOME}/screenshots"
-defaults write com.apple.screencapture location "${HOME}/screenshots"
-
-# Restart affected processes to apply changes
-killall Finder
-killall Dock
-"""
+# Runs on every `mise bootstrap`, changed or not.
+# The screenshot location is written here because defaults values are not templated, so $HOME cannot be declared.
+[bootstrap.hooks.post-defaults]
+run = [
+  'mkdir -p "$HOME/Pictures/screenshots"',
+  'defaults write com.apple.screencapture location -string "$HOME/Pictures/screenshots"',
+  "killall Finder Dock SystemUIServer 2>/dev/null || true",
+]
 
 [tasks.claude-install]
 description = "install Claude CLI if not installed"
