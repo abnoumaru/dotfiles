@@ -2,6 +2,24 @@
 
 # Casks with a pkg installer are in the Brewfile.
 [bootstrap.packages]
+# Formulae for libraries and tools the mise registry lacks
+"brew:aarch64-elf-gdb" = "latest"
+"brew:coreutils" = "latest"
+"brew:docker-compose" = "latest"
+"brew:docker-credential-helper" = "latest"
+"brew:gnupg" = "latest"
+"brew:libpq" = "latest"
+"brew:luv" = "latest"
+"brew:pinentry-mac" = "latest"
+"brew:jorgelbg/tap/pinentry-touchid" = "latest"
+"brew:terminal-notifier" = "latest"
+"brew:tree" = "latest"
+"brew:wget" = "latest"
+"brew:yukiarrr/tap/ecsk" = "latest"
+"brew:zsh-completions" = "latest"
+# The GitHub release nests the binary where mise's github backend cannot find it
+"brew:rubyfmt" = "latest"
+
 "brew-cask:chromium" = "latest"
 "brew-cask:fontbase" = "latest"
 "brew-cask:ghostty" = "latest"
@@ -15,6 +33,8 @@
 
 [bootstrap.brew.taps]
 "abue-ammar/tinycast" = "https://github.com/abue-ammar/homebrew-tinycast.git"
+"jorgelbg/tap" = "https://github.com/jorgelbg/homebrew-tap.git"
+"yukiarrr/tap" = "https://github.com/yukiarrr/homebrew-tap.git"
 
 [dotfiles]
 "~/.config/mise/config.toml" = "mise/config.toml"

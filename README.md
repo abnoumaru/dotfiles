@@ -1,7 +1,7 @@
 ## Initial Setup
 
 1. `xcode-select --install`
-2. Install Homebrew from https://brew.sh, then `brew install mise`
+2. Install Homebrew from https://brew.sh, then `curl https://mise.run | sh`
 3. Clone. The symlinks point into this path, so do not move it later.
 
    ```bash
@@ -29,7 +29,7 @@ Prefer mise. Use the Brewfile only when mise cannot.
 | Command-line tool or runtime | `mise/config.toml` | `mise use -g <tool>` |
 | App bundle cask | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew-cask:<cask>` |
 | pkg installer cask | `Brewfile` | Add a `cask` line, then `mise run brew` |
-| Formula not in the mise registry | `Brewfile` | Add a `brew` line, then `mise run brew` |
+| Formula | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew:<formula>` |
 | Config file | `mise.toml` `[dotfiles]` | Add an entry, then `mise bootstrap --only dotfiles` |
 | macOS setting | `mise.toml` `[bootstrap.macos.defaults]` | Match the type from `defaults read-type` |
 
@@ -41,9 +41,10 @@ mise bootstrap status        # show drift
 ```
 
 ```bash
+mise self-update                 # mise
 mise upgrade                     # tools
-mise bootstrap packages upgrade  # casks mise installed
-brew upgrade                     # Brewfile, and casks Homebrew installed
+mise bootstrap packages upgrade  # formulae, and casks mise installed
+brew upgrade --cask              # Brewfile, and casks Homebrew installed
 ```
 
 Deleting an entry does not uninstall or unlink anything:
@@ -51,13 +52,10 @@ Deleting an entry does not uninstall or unlink anything:
 | Removed from | Clean up with |
 |--------------|---------------|
 | `mise/config.toml` | `mise uninstall --all <tool>` |
-| `[bootstrap.packages]` | `brew uninstall --cask <cask>` |
-| `Brewfile` | `brew uninstall <name>` |
+| `[bootstrap.packages]` | `mise bootstrap packages prune`, or `brew uninstall --cask <cask>` if Homebrew installed it |
+| `Brewfile` | `brew uninstall --cask <cask>` |
 | `[dotfiles]` | `mise bootstrap dotfiles unapply` |
 | `[bootstrap.macos.defaults]` | Reset it in System Settings |
-
-Do not run `mise bootstrap packages prune` while the Brewfile lists formulae. It
-removes every Homebrew formula not in `[bootstrap.packages]`, mise included.
 
 ## Directory Structure
 
