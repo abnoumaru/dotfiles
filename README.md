@@ -52,18 +52,3 @@ Deleting an entry does not uninstall or unlink anything:
 | `[bootstrap.packages]` | `mise bootstrap packages prune`, or `brew uninstall --cask <cask>` if Homebrew installed it |
 | `[dotfiles]` | `mise bootstrap dotfiles unapply` |
 | `[bootstrap.macos.defaults]` | Reset it in System Settings |
-
-## Directory Structure
-
-| Directory | Description |
-|-----------|-------------|
-| `claude/` | Claude Code configuration |
-| `ghostty/` | Terminal emulator |
-| `git/` | Git configuration template |
-| `karabiner/` | Keyboard remapping |
-| `mise/` | Tool version management |
-| `nvim/` | Editor configuration |
-| `postgres/` | psqlrc configuration |
-| `starship/` | Shell prompt |
-| `zed/` | Zed editor configuration |
-| `zsh/` | Shell configuration |
