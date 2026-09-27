@@ -24,7 +24,7 @@
 
 | What | Where | How |
 |------|-------|-----|
-| Command-line tool or runtime | `mise/config.toml` | `mise use -g <tool>` |
+| Command-line tool or runtime | `mise/global.toml` | `mise use -g <tool>` |
 | Cask | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew-cask:<cask>` |
 | Formula | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew:<formula>` |
 | Config file | `mise.toml` `[dotfiles]` | Add an entry, then `mise bootstrap --only dotfiles` |
@@ -48,7 +48,7 @@ Deleting an entry does not uninstall or unlink anything:
 
 | Removed from | Clean up with |
 |--------------|---------------|
-| `mise/config.toml` | `mise uninstall --all <tool>` |
+| `mise/global.toml` | `mise uninstall --all <tool>` |
 | `[bootstrap.packages]` | `mise bootstrap packages prune`, or `brew uninstall --cask <cask>` if Homebrew installed it |
 | `[dotfiles]` | `mise bootstrap dotfiles unapply` |
 | `[bootstrap.macos.defaults]` | Reset it in System Settings |

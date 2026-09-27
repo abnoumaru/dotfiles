@@ -44,7 +44,7 @@
 run = ["chmod 755 /opt/homebrew/share"]
 
 [dotfiles]
-"~/.config/mise/config.toml" = "mise/config.toml"
+"~/.config/mise/config.toml" = "mise/global.toml"
 "~/.zshrc" = "zsh/.zshrc"
 "~/.config/starship.toml" = "starship/starship.toml"
 "~/.config/ghostty/config" = "ghostty/config"
