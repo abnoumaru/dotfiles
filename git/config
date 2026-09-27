@@ -1,0 +1,20 @@
+[alias]
+	st = status
+	sw = switch
+	sc = switch -c
+	cia = commit -am
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[ghq]
+	root = ~/go/src
+
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

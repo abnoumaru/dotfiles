@@ -48,6 +48,8 @@ run = ["chmod 755 /opt/homebrew/share"]
 "~/.zshrc" = "zsh/.zshrc"
 "~/.config/starship.toml" = "starship/starship.toml"
 "~/.config/ghostty/config" = "ghostty/config"
+"~/.config/git/config" = "git/config"
+"~/.config/git/ignore" = "git/ignore"
 "~/.config/nvim/init.lua" = "nvim/init.lua"
 "~/.config/zed/settings.json" = "zed/settings.json"
 "~/.psqlrc" = "postgres/.psqlrc"
@@ -66,17 +68,6 @@ run = [
 [tasks.bootstrap]
 description = "run the setup steps mise bootstrap cannot declare"
 depends = ["claude-install"]
-
-[tasks.gitconfig]
-description = "set up gitconfig (interactive)"
-run = """
-#!/usr/bin/env bash
-echo "setting up gitconfig..."
-mkdir -p "$HOME/go/src"
-read -p "Enter your name: " name
-read -p "Enter your email: " email
-sed -e "s/Hoge Fuga/$name/" -e "s/hoge@example.com/$email/" -e "s/hogehogehoge/$USER/" "{{ config_root }}/git/gitconfig.template" > "$HOME/.gitconfig"
-"""
 
 # Types must match the plist: mise treats 64 and 64.0 as different values.
 [bootstrap.macos.defaults.NSGlobalDomain]

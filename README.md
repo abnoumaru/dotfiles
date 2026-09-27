@@ -17,7 +17,14 @@
    mise bootstrap
    ```
 
-5. `mise run gitconfig` and `gh auth login`
+5. Set the git identity, which stays out of this repository, then `gh auth login`
+
+   ```bash
+   git config --global user.name "<name>"
+   git config --global user.email "<email>"
+   git config --global user.signingkey "<ssh public key>"
+   ```
+
 6. Log out and back in, and grant Karabiner-Elements its permissions.
 
 ## Adding something
