@@ -1,7 +1,7 @@
 ## Initial Setup
 
 1. `xcode-select --install`
-2. Install Homebrew from https://brew.sh, then `curl https://mise.run | sh`
+2. `curl https://mise.run | sh`
 3. Clone. The symlinks point into this path, so do not move it later.
 
    ```bash
@@ -22,13 +22,10 @@
 
 ## Adding something
 
-Prefer mise. Use the Brewfile only when mise cannot.
-
 | What | Where | How |
 |------|-------|-----|
 | Command-line tool or runtime | `mise/config.toml` | `mise use -g <tool>` |
-| App bundle cask | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew-cask:<cask>` |
-| pkg installer cask | `Brewfile` | Add a `cask` line, then `mise run brew` |
+| Cask | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew-cask:<cask>` |
 | Formula | `mise.toml` `[bootstrap.packages]` | `mise bootstrap packages use brew:<formula>` |
 | Config file | `mise.toml` `[dotfiles]` | Add an entry, then `mise bootstrap --only dotfiles` |
 | macOS setting | `mise.toml` `[bootstrap.macos.defaults]` | Match the type from `defaults read-type` |
@@ -44,7 +41,7 @@ mise bootstrap status        # show drift
 mise self-update                 # mise
 mise upgrade                     # tools
 mise bootstrap packages upgrade  # formulae, and casks mise installed
-brew upgrade --cask              # Brewfile, and casks Homebrew installed
+brew upgrade --cask              # casks Homebrew installed
 ```
 
 Deleting an entry does not uninstall or unlink anything:
@@ -53,7 +50,6 @@ Deleting an entry does not uninstall or unlink anything:
 |--------------|---------------|
 | `mise/config.toml` | `mise uninstall --all <tool>` |
 | `[bootstrap.packages]` | `mise bootstrap packages prune`, or `brew uninstall --cask <cask>` if Homebrew installed it |
-| `Brewfile` | `brew uninstall --cask <cask>` |
 | `[dotfiles]` | `mise bootstrap dotfiles unapply` |
 | `[bootstrap.macos.defaults]` | Reset it in System Settings |
 
