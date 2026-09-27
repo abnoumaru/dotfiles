@@ -62,7 +62,7 @@ Deleting an entry does not uninstall or unlink anything:
 | `git/` | Git configuration template |
 | `karabiner/` | Keyboard remapping |
 | `mise/` | Tool version management |
-| `neovim/` | Editor configuration |
+| `nvim/` | Editor configuration |
 | `postgres/` | psqlrc configuration |
 | `starship/` | Shell prompt |
 | `zed/` | Zed editor configuration |
