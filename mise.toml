@@ -33,6 +33,7 @@
 "brew-cask:slack" = "latest"
 "brew-cask:spotify" = "latest"
 "brew-cask:twingate" = "latest"
+"brew-cask:discord" = "latest"
 
 [bootstrap.brew.taps]
 "abue-ammar/tinycast" = "https://github.com/abue-ammar/homebrew-tinycast.git"
