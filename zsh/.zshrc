@@ -24,6 +24,8 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Other tools
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+[ -d "$TF_PLUGIN_CACHE_DIR" ] || mkdir -p "$TF_PLUGIN_CACHE_DIR"
 
 # fzf configuration
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
