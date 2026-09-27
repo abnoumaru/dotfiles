@@ -18,9 +18,5 @@ Thumbs.db
 .local
 *.local
 
-# Ignore images in zsh/images directory (keep directory structure)
-zsh/images/*
-!zsh/images/.gitkeep
-
 # Karabiner-Elements writes these next to karabiner.json
 karabiner/automatic_backups/
