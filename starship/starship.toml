@@ -1,5 +1,4 @@
 format = """
-$os\
 $username\
 $directory\
 $nodejs\
@@ -16,13 +15,6 @@ show_always = false
 style_user = "fg:#c4b28a"
 style_root = "fg:#c4746e"
 format = '[$user ]($style)'
-
-[os]
-style = "fg:#8992a7"
-disabled = false
-
-[os.symbols]
-Macos = " "
 
 [directory]
 style = "fg:#8ba4b0"
