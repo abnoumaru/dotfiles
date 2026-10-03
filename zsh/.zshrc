@@ -63,7 +63,6 @@ alias d="git diff"
 alias st="git status -sb"
 alias sw="git switch"
 
-alias cr="claude --resume"
 alias vim=nvim
 alias zs="source ~/.zshrc"
 
@@ -100,6 +99,14 @@ function _fzf-select-history() {
 }
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
+
+# Claude Code session selection
+function _claude_resume() {
+  BUFFER="claude --resume"
+  zle accept-line
+}
+zle -N _claude_resume
+bindkey '^o' _claude_resume
 
 # ================================
 #         Private Configurations
