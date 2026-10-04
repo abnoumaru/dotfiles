@@ -1,0 +1,26 @@
+{
+  "name": "Kanagawa Dragon (abnoumaru)",
+  "source": "https://github.com/inkdropapp/kanagawa",
+  "base": "dark-ansi",
+  "overrides": {
+    "claude": "rgb(182,146,123)",
+    "claudeShimmer": "rgb(200,169,148)",
+    "text": "rgb(197,201,197)",
+    "inverseText": "rgb(24,22,22)",
+    "inactive": "rgb(115,124,115)",
+    "subtle": "rgb(98,94,90)",
+    "suggestion": "rgb(139,164,176)",
+    "permission": "rgb(137,146,167)",
+    "planMode": "rgb(142,164,162)",
+    "promptBorder": "rgb(98,94,90)",
+    "success": "rgb(135,169,135)",
+    "error": "rgb(196,116,110)",
+    "warning": "rgb(196,178,138)",
+    "diffAddedWord": "ansi256(28)",
+    "diffRemovedWord": "ansi256(88)",
+    "userMessageBackground": "rgb(40,39,39)",
+    "bashMessageBackgroundColor": "rgb(29,28,25)",
+    "selectionBg": "rgb(45,79,103)",
+    "composerSidebarBackground": "rgb(29,28,25)"
+  }
+}

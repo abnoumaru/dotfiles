@@ -173,6 +173,6 @@
     }
   },
   "tui": "fullscreen",
-  "theme": "dark",
+  "theme": "custom:kanagawa-dragon-abnoumaru",
   "model": "opus"
 }
