@@ -27,8 +27,17 @@
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
+# Kanagawa Dragon has no built-in delta theme, so syntax follows the terminal's ANSI palette.
 [delta]
 	navigate = true
+	syntax-theme = ansi
+	minus-style = syntax "#43242b"
+	minus-emph-style = bold "#c4746e" "#43242b"
+	plus-style = syntax "#2b3328"
+	plus-emph-style = bold "#87a987" "#2b3328"
+	file-style = bold "#8ba4b0"
+	file-decoration-style = "#8ba4b0" ul
+	hunk-header-decoration-style = "#393836" box
 
 [diff]
 	algorithm = histogram
