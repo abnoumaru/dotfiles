@@ -102,6 +102,19 @@
       "Edit(/etc/sudoers)"
     ]
   },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title 'Claude Code' -subtitle \"$(basename \"$CLAUDE_PROJECT_DIR\")\" -message \"$(jq -r '.message // .notification_type')\" -activate com.mitchellh.ghostty"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "ccstatus",
