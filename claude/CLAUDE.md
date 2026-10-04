@@ -1,86 +1,61 @@
 # Development Guidelines
 
-## Communication Preferences
+## Communication
 
-- Keep annotations like `TODO:` and `NOTE:` in English.
 - Explain error messages in detail in Japanese.
-- Keep technical terms in English without forced translation.
+- Keep technical terms and annotations like `TODO:` and `NOTE:` in English.
+
+## Writing
+
+Applies to documents, PR descriptions, commit messages, and code comments.
+
+- Write natural Japanese. Avoid literal translations from English, coined words, and abstract metaphors (e.g. 「払った教訓」「今日の地図」「起点」「系列」「手組みリソース」「素タグ」). Before finishing, reread the text and ask whether a native speaker would actually phrase it that way.
+- Spell out names in full instead of abbreviating (e.g. WIF, FIC, CL, sg).
+- Do not use bold or emoji. Use backticks only for code.
+- Explain in prose. Use bullet lists only for things that are genuinely a list.
+- Do not put a space between alphanumeric characters and Japanese.
+- Cut redundant or self-evident sentences.
+- When given a reference document for tone and style, read it and match it.
 
 ## Where Information Belongs
 
-Each kind of information has exactly one home. Do not duplicate it elsewhere.
-ref: https://x.com/t_wada/status/904916106153828352
+Each kind of information has exactly one home ([t_wada](https://x.com/t_wada/status/904916106153828352)).
 
-| Place         | Explains    | Meaning                                           |
-| ------------- | ----------- | ------------------------------------------------- |
-| Code          | **How**     | How it works — the code itself is the explanation. |
-| Test code     | **What**    | What the code is supposed to do.                  |
-| Commit log    | **Why**     | Why the change was needed.                        |
-| Code comments | **Why not** | Why the obvious alternative was rejected.         |
+| Place         | Explains | Meaning                                   |
+| ------------- | -------- | ----------------------------------------- |
+| Code          | How      | The code itself is the explanation.       |
+| Test code     | What     | What the code is supposed to do.          |
+| Commit log    | Why      | Why the change was needed.                |
+| Code comments | Why not  | Why the obvious alternative was rejected. |
 
-- If code needs a comment to explain *how* it works, rewrite the code instead.
-- If a commit message explains *what* changed, delete it — the diff already says that.
+- If code needs a comment to explain how it works, rewrite the code instead.
+- Write comments for someone reading the file, not a reviewer reading the diff. Leave out change history (「〇〇に委譲」), PR numbers, and obvious section labels (`# タグ`), but keep context that cannot be recovered from the code.
 
-## Core Principles
+## Development
 
-- **TDD & Tidy First**: Strictly follow Kent Beck's principles of Test-Driven Development (TDD) and Tidy First.
-- **Incremental Progress**: Make small, incremental changes that compile and pass tests, rather than big bangs.
-- **Learn from Existing Code**: Before implementing, study and understand the existing codebase to maintain consistency.
-- **Clarity Over Cleverness**: Prefer boring, obvious code where the intent is clear over clever solutions.
+- When changing the behavior of testable code, follow TDD (Red → Green → Refactor).
+- Follow Tidy First: never mix structural and behavioral changes in one commit. Make the structural change first.
+- When approaches compete, prioritize: testability > readability > consistency with existing code > simplicity > reversibility.
+- Do not swallow exceptions. Catch a specific one only to add context, clean up, or recover.
+- Write throwaway scripts in Ruby unless the project uses another language.
+- Change only what the request covers. If something else needs fixing, propose it instead of changing it.
+- Do not run `aws` commands yourself. They need special authentication, so ask the user to run them.
+- If you have failed three times, stop and reassess the approach.
 
-## Development Workflow: The TDD Cycle
+## Commits
 
-Always follow the **Red → Green → Refactor** cycle.
+- Commit only when tests pass with no warnings.
+- Never use `--no-verify`. If a hook fails, fix the cause.
+- If GPG signing fails, ask the user to unlock the key instead of skipping the signature.
+- Keep each commit small. Write the message in English, usually as a subject line only.
+- Use the Conventional Commits type to mark structural (`refactor:`) vs behavioral (`feat:` / `fix:`) changes.
+- Add a body only when the why is not obvious, in a sentence or two. Background, alternatives, and follow-ups belong in the PR description.
 
-1.  **Red**: Write a single failing test that defines a small increment of functionality.
-2.  **Green**: Write the minimum amount of code necessary to make the test pass.
-3.  **Refactor**: With all tests passing (Green), refactor the code to eliminate duplication and improve clarity.
+## Pull Requests
 
-## The Tidy First Approach
-
-Clearly separate all changes into two distinct types:
-
-- **Structural Changes**: Reorganize code without changing its behavior (e.g., renaming, extracting methods, organizing dependencies).
-- **Behavioral Changes**: Add or modify functionality.
-
-Never mix these two types of changes in a single commit. If both are needed, always perform the structural changes first, ensure all tests pass, and then proceed with the behavioral changes.
-
-## Quality Standards
-
-- **Tests**:
-    - All changes must be tested.
-    - Test behavior, not implementation details.
-    - Tests should be deterministic.
-- **Code**:
-    - Always follow the project's formatting and linting rules.
-    - Make dependencies explicit.
-    - Keep methods small and focused on a single responsibility.
-- **Commits**:
-    - Only commit when all tests are passing and there are no warnings.
-    - Commit small and often.
-    - Write commit messages in English.
-    - Keep the message terse. For most changes the subject line is the whole message.
-    - Write a body only when the **Why** is not obvious from the subject. Keep it to a sentence or two.
-    - Do not write PR-level content in a commit: background, design rationale, alternatives considered, migration notes, or follow-up work. Those go in a PR description, a doc, or an issue.
-    - Indicate Structural vs Behavioral through the Conventional Commits type (`refactor:` for structural, `feat:` / `fix:` for behavioral) rather than a line of prose.
-
-## Decision-Making Framework
-
-When multiple valid approaches exist, evaluate and choose based on the following order:
-
-1.  **Testability**: Can this change be easily tested?
-2.  **Readability**: Will someone else understand this in 6 months?
-3.  **Consistency**: Does this match existing patterns in the project?
-4.  **Simplicity**: Is this the simplest solution that works?
-5.  **Reversibility**: How easy is it to change in the future?
-
-## Important Reminders
-
-**NEVER**:
-- Use `--no-verify` to bypass commit hooks.
-- Disable tests instead of fixing them.
-- Commit code that doesn't compile.
-
-**ALWAYS**:
-- Commit working code incrementally.
-- Stop and reassess your approach if you've failed three times.
+- Create PRs as drafts.
+- If the repository has a PR template, follow it.
+- Otherwise, choose sections from 背景, 課題, やったこと, トレードオフ, and 他に考えたが採用しなかった案 according to the size of the task and the weight of its impact. A small change may need only やったこと.
+- Keep the title short enough to convey what the PR does at a glance.
+- When asked to reply to a PR or issue comment, draft the reply. Post it only when explicitly asked.
+- Once a PR has review comments, add new commits instead of force pushing. When a force push is needed, use `--force-with-lease`.
