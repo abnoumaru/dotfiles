@@ -1,5 +1,9 @@
 # Visualization
 theme = Kanagawa Dragon
+# NOTE: Claude Code's ANSI themes round rgb() diff colors to the 256-color
+# palette, so the diff word highlights are set here instead of in its theme file.
+palette = 28=#5a7a4e
+palette = 88=#934050
 font-family = Monaspace Argon
 font-feature = -calt
 background-opacity = 0.92
