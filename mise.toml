@@ -61,6 +61,7 @@ run = ["chmod 755 /opt/homebrew/share"]
 "~/.claude/themes" = "claude/themes"
 # Link each skill, not the directory: ~/.claude/skills also holds skills installed by other tools.
 "~/.claude/skills/proofreading-japanese" = "claude/skills/proofreading-japanese"
+"~/.claude/skills/reviewing-pull-requests" = "claude/skills/reviewing-pull-requests"
 # Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
 "~/.config/karabiner" = "karabiner"
 
