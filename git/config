@@ -12,6 +12,17 @@
 [ghq]
 	root = ~/go/src
 
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+
 [commit]
 	gpgsign = true
 [gpg]
