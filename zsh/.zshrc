@@ -45,8 +45,8 @@ export PATH="/Users/takaaki-abe/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # Google Cloud SDK
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+gcloud_completion="$HOME/.local/share/mise/installs/gcloud/latest/completion.zsh.inc"
+[ -f "$gcloud_completion" ] && . "$gcloud_completion"
 
 # Tool Initializations
 eval "$(mise activate zsh)"
