@@ -23,6 +23,13 @@
 [rerere]
 	enabled = true
 
+[diff]
+	algorithm = histogram
+[merge]
+	conflictStyle = zdiff3
+[branch]
+	sort = -committerdate
+
 [commit]
 	gpgsign = true
 [gpg]
