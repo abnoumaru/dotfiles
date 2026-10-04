@@ -108,6 +108,41 @@ function _claude_resume() {
 zle -N _claude_resume
 bindkey '^o' _claude_resume
 
+# mairu role selection
+function _mairu_roles_json() {
+  local json="$(mairu list-roles -o json)"
+  local -a logged_out=(${(f)"$(jq -r '.servers[] | select(.logged_in | not) | .server_id' <<< "$json")"})
+  [ ${#logged_out} -eq 0 ] && { echo "$json"; return }
+  local server
+  for server in $logged_out; do
+    mairu login "$server" < /dev/tty > /dev/tty 2>&1
+  done
+  mairu list-roles -o json
+}
+
+function _fzf_mairu_exec() {
+  zle -I
+  local rows="$(_mairu_roles_json | jq -r '
+    [.servers[] | .server_id as $s | .roles[] | {server: $s, name, description}]
+    | (map(.description | length) | max) as $width
+    | .[] | [.server, .name, .description + " " * ($width - (.description | length)) + "  " + .name]
+    | @tsv')"
+  if [ -z "$rows" ]; then
+    zle -M "mairu: no roles. Run 'mairu login <server>', or 'mairu kill-agent' first if already logged in."
+    return
+  fi
+  local selected="$(fzf --reverse --height=50% --delimiter='\t' --with-nth=3 <<< "$rows")"
+  if [ -n "$selected" ]; then
+    local server role
+    IFS=$'\t' read -r server role _ <<< "$selected"
+    BUFFER="mairu exec --server=${server} ${role} "
+    CURSOR=$#BUFFER
+  fi
+  zle reset-prompt
+}
+zle -N _fzf_mairu_exec
+bindkey '^g' _fzf_mairu_exec
+
 # ================================
 #         Private Configurations
 # ================================
