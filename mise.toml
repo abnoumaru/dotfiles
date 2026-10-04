@@ -58,6 +58,7 @@ run = ["chmod 755 /opt/homebrew/share"]
 "~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
 "~/.claude/settings.json" = "claude/settings.json"
 "~/.claude/hooks" = "claude/hooks"
+"~/.claude/themes" = "claude/themes"
 # Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
 "~/.config/karabiner" = "karabiner"
 
