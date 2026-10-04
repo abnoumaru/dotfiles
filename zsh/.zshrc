@@ -79,9 +79,8 @@ cmdcp() {
 # ghq repository selection
 # ref: https://gist.github.com/sheepla/d680f1480d8c36c4290d6aabebf1abc6
 function _fzf_cd_ghq() {
-  FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --reverse --height=50%"
   local root="$(ghq root)"
-  local repo="$(ghq list | fzf --preview="ls -AF --color=always ${root}/{1}")"
+  local repo="$(ghq list | fzf --reverse --preview="ls -AF --color=always ${root}/{1}")"
   local dir="${root}/${repo}"
   [ -n "${repo}" ] && [ -n "${dir}" ] && cd "${dir}"
   zle accept-line
