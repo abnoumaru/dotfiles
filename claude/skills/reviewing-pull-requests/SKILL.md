@@ -1,7 +1,7 @@
 ---
 name: reviewing-pull-requests
 description: "GitHub の PR をレビューするとき、または PR の内容を理解したいときに使う。「<PR の URL> をレビューして」「この PR の解説とレビューをお願い」「PR 見てほしい」と依頼されたときに使う。"
-argument-hint: "<PR の URL か番号> [mermaid|excalidraw|none]"
+argument-hint: "<PR の URL か番号> [mermaid|excalidraw]"
 ---
 
 # PR のレビュー
@@ -12,9 +12,8 @@ GitHub には何も書き込まない。コメント、レビュー、approve、
 
 ## 1. 図の形式を決める
 
-引数に mermaid、excalidraw、none のいずれかがあればそれに従う。なければ、作業を始める前に AskUserQuestion で聞く。
+引数で図の形式を決める。指定がなければ図は作らない。
 
-- なし
 - mermaid: レビュー文書に埋め込む
 - excalidraw: ローカルで説明するときに使う
 
@@ -30,9 +29,9 @@ GitHub には何も書き込まない。コメント、レビュー、approve、
 
 1. 変更の概要。2-3 文で書く。
 2. 語彙テーブル。列は「語彙」「日本語訳」「内容」とする。クラス名、変数名、設定キーなど、差分を読むのに必要な語を載せる。
-3. 主要な処理のシーケンス図。mermaid を選んだときだけ書く。
+3. 主要な処理のシーケンス図。引数で mermaid を指定したときだけ書く。
 
-excalidraw を選んだときは、excalidraw スキルで同じシーケンス図を作る。
+引数で excalidraw を指定したときは、excalidraw スキルで同じシーケンス図を作る。
 
 ## 4. レビューする
 
