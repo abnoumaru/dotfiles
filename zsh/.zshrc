@@ -130,7 +130,7 @@ function _fzf_mairu_exec() {
     zle -M "mairu: no roles. Run 'mairu login <server>', or 'mairu kill-agent' first if already logged in."
     return
   fi
-  local selected="$(fzf --reverse --height=50% --delimiter='\t' --with-nth=3 <<< "$rows")"
+  local selected="$(fzf --reverse --delimiter='\t' --with-nth=3 <<< "$rows")"
   if [ -n "$selected" ]; then
     local server role
     IFS=$'\t' read -r server role _ <<< "$selected"
