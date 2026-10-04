@@ -5,7 +5,7 @@
 | Plugin | Description |
 |--------|-------------|
 | lazy.nvim | Plugin manager |
-| tokyonight.nvim | Color scheme (transparent) |
+| kanagawa.nvim | Color scheme (Kanagawa Dragon, transparent) |
 | mason.nvim | LSP installer |
 | nvim-lspconfig | LSP configuration |
 | lsp_signature.nvim | Function signature display |

@@ -39,21 +39,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specifications
 local plugins = {
-  -- Tokyonight colorscheme (blue-based)
+  -- Kanagawa colorscheme (matches Ghostty's Kanagawa Dragon)
   {
-    "folke/tokyonight.nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("tokyonight").setup({
-        style = "night", -- night style は深い青ベース
+      require("kanagawa").setup({
+        theme = "dragon",
         transparent = true,
-        styles = {
-          sidebars = "transparent",
-          floats = "transparent",
-        },
       })
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme kanagawa-dragon]])
     end,
   },
 
@@ -303,7 +299,7 @@ local plugins = {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "tokyonight",
+          theme = "kanagawa",
         },
       })
     end,
@@ -326,17 +322,18 @@ local plugins = {
         },
       })
       -- タブバーの色を濃くする
-      vim.api.nvim_set_hl(0, 'BufferCurrent', { fg = '#ffffff', bg = '#1a1a2e', bold = true })
-      vim.api.nvim_set_hl(0, 'BufferCurrentIndex', { fg = '#7aa2f7', bg = '#1a1a2e', bold = true })
-      vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = '#e0af68', bg = '#1a1a2e' })
-      vim.api.nvim_set_hl(0, 'BufferCurrentSign', { fg = '#7aa2f7', bg = '#1a1a2e' })
-      vim.api.nvim_set_hl(0, 'BufferCurrentIcon', { bg = '#1a1a2e' })
-      vim.api.nvim_set_hl(0, 'BufferInactive', { fg = '#888888', bg = '#0f0f17' })
-      vim.api.nvim_set_hl(0, 'BufferInactiveIndex', { fg = '#555555', bg = '#0f0f17' })
-      vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = '#e0af68', bg = '#0f0f17' })
-      vim.api.nvim_set_hl(0, 'BufferInactiveSign', { fg = '#444444', bg = '#0f0f17' })
-      vim.api.nvim_set_hl(0, 'BufferInactiveIcon', { bg = '#0f0f17' })
-      vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#0a0a10' })
+      local p = require("kanagawa.colors").setup({ theme = "dragon" }).palette
+      vim.api.nvim_set_hl(0, 'BufferCurrent', { fg = p.dragonWhite, bg = p.dragonBlack4, bold = true })
+      vim.api.nvim_set_hl(0, 'BufferCurrentIndex', { fg = p.dragonBlue2, bg = p.dragonBlack4, bold = true })
+      vim.api.nvim_set_hl(0, 'BufferCurrentMod', { fg = p.dragonYellow, bg = p.dragonBlack4 })
+      vim.api.nvim_set_hl(0, 'BufferCurrentSign', { fg = p.dragonBlue2, bg = p.dragonBlack4 })
+      vim.api.nvim_set_hl(0, 'BufferCurrentIcon', { bg = p.dragonBlack4 })
+      vim.api.nvim_set_hl(0, 'BufferInactive', { fg = p.dragonAsh, bg = p.dragonBlack1 })
+      vim.api.nvim_set_hl(0, 'BufferInactiveIndex', { fg = p.dragonBlack6, bg = p.dragonBlack1 })
+      vim.api.nvim_set_hl(0, 'BufferInactiveMod', { fg = p.dragonYellow, bg = p.dragonBlack1 })
+      vim.api.nvim_set_hl(0, 'BufferInactiveSign', { fg = p.dragonBlack5, bg = p.dragonBlack1 })
+      vim.api.nvim_set_hl(0, 'BufferInactiveIcon', { bg = p.dragonBlack1 })
+      vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = p.dragonBlack0 })
       -- バッファ移動
       vim.keymap.set('n', '<A-,>', ':BufferPrevious<CR>', { desc = 'Previous buffer' })
       vim.keymap.set('n', '<A-.>', ':BufferNext<CR>', { desc = 'Next buffer' })
@@ -384,10 +381,11 @@ local plugins = {
     config = function()
       vim.keymap.set('n', '<leader>gm', ':GitMessenger<CR>', { desc = 'Show git commit message' })
       -- ポップアップの色を濃くする
-      vim.api.nvim_set_hl(0, 'gitmessengerPopupNormal', { fg = '#ffffff', bg = '#1a1a2e' })
-      vim.api.nvim_set_hl(0, 'gitmessengerHeader', { fg = '#7aa2f7', bg = '#1a1a2e', bold = true })
-      vim.api.nvim_set_hl(0, 'gitmessengerHash', { fg = '#bb9af7', bg = '#1a1a2e' })
-      vim.api.nvim_set_hl(0, 'gitmessengerHistory', { fg = '#9ece6a', bg = '#1a1a2e' })
+      local p = require("kanagawa.colors").setup({ theme = "dragon" }).palette
+      vim.api.nvim_set_hl(0, 'gitmessengerPopupNormal', { fg = p.dragonWhite, bg = p.dragonBlack4 })
+      vim.api.nvim_set_hl(0, 'gitmessengerHeader', { fg = p.dragonBlue2, bg = p.dragonBlack4, bold = true })
+      vim.api.nvim_set_hl(0, 'gitmessengerHash', { fg = p.dragonViolet, bg = p.dragonBlack4 })
+      vim.api.nvim_set_hl(0, 'gitmessengerHistory', { fg = p.dragonGreen, bg = p.dragonBlack4 })
     end,
   },
 
