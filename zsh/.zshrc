@@ -4,10 +4,12 @@ setopt print_eight_bit
 # History
 # ref: https://zenn.dev/botamotch/articles/e7960f0dc84d8b
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt hist_ignore_all_dups
+setopt hist_ignore_space
 setopt hist_reduce_blanks
+setopt extended_history
 setopt share_history
 
 # Homebrew completions
