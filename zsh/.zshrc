@@ -64,6 +64,7 @@ alias d="git diff"
 alias st="git status -sb"
 alias sw="git switch"
 
+alias history="history -i"
 alias vim=nvim
 alias zs="source ~/.zshrc"
 
@@ -93,7 +94,9 @@ bindkey "^h" _fzf_cd_ghq
 # History selection
 # ref: https://zenn.dev/nokogiri/articles/ec99e40df54555
 function _fzf-select-history() {
-  BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse --no-sort)
+  local selected="$(fc -lnr -t $'%F %R\t' 1 | fzf --query "$LBUFFER" --reverse --no-sort --delimiter='\t' --nth=2..)"
+  local cmd="${selected#*$'\t'}"
+  BUFFER="${cmd#  }"
   CURSOR=$#BUFFER
   zle reset-prompt
 }
