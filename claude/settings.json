@@ -120,6 +120,17 @@
     ]
   },
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/format.sh"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "",

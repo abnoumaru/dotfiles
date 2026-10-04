@@ -57,6 +57,7 @@ run = ["chmod 755 /opt/homebrew/share"]
 "~/.psqlrc" = "postgres/.psqlrc"
 "~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
 "~/.claude/settings.json" = "claude/settings.json"
+"~/.claude/hooks" = "claude/hooks"
 # Link the directory, not karabiner.json: Karabiner replaces a symlinked file with a regular one on save.
 "~/.config/karabiner" = "karabiner"
 
