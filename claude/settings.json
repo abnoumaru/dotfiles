@@ -119,6 +119,7 @@
       "Edit(/etc/sudoers)"
     ]
   },
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -173,6 +174,5 @@
     }
   },
   "tui": "fullscreen",
-  "theme": "custom:kanagawa-dragon-abnoumaru",
-  "model": "opus"
+  "theme": "custom:kanagawa-dragon-abnoumaru"
 }
