@@ -9,7 +9,8 @@
     "BASH_MAX_TIMEOUT_MS": "1200000",
     "MAX_THINKING_TOKENS": "200000",
     "UV_PYTHON_PREFERENCE": "managed",
-    "NODE_OPTIONS": "--max-old-space-size=4096"
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1"
   },
   "attribution": {
     "commit": "",
@@ -130,6 +131,15 @@
             "command": "$HOME/.claude/hooks/format.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tab-title.sh ⏳"
+          }
+        ]
       }
     ],
     "Notification": [
@@ -139,6 +149,45 @@
           {
             "type": "command",
             "command": "terminal-notifier -title 'Claude Code' -subtitle \"$(basename \"$CLAUDE_PROJECT_DIR\")\" -message \"$(jq -r '.message // .notification_type')\" -activate com.mitchellh.ghostty"
+          }
+        ]
+      },
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tab-title.sh 🔔"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tab-title.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tab-title.sh ⏳"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/tab-title.sh"
           }
         ]
       }
