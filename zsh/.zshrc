@@ -64,6 +64,7 @@ alias d="git diff"
 alias st="git status -sb"
 alias sw="git switch"
 
+alias c=claude
 alias history="history -i"
 alias vim=nvim
 alias zs="source ~/.zshrc"
