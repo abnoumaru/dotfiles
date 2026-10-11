@@ -35,10 +35,12 @@
 "brew-cask:twingate" = "latest"
 "brew-cask:discord" = "latest"
 "brew-cask:meetingbar" = "latest"
+"brew-cask:stablyai/orca/orca" = "latest"
 
 [bootstrap.brew.taps]
 "abue-ammar/tinycast" = "https://github.com/abue-ammar/homebrew-tinycast.git"
 "jorgelbg/tap" = "https://github.com/jorgelbg/homebrew-tap.git"
+"stablyai/orca" = "https://github.com/stablyai/homebrew-orca.git"
 "yukiarrr/tap" = "https://github.com/yukiarrr/homebrew-tap.git"
 
 # compinit ignores completions under a group-writable directory.
