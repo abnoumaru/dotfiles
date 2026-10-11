@@ -2,6 +2,7 @@
 idiomatic_version_file_enable_tools = ["node", "ruby"]
 
 [tools]
+1password = "latest"
 awscli = "latest"
 azure-cli = "latest"
 delta = "latest"
