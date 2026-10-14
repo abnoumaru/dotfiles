@@ -56,6 +56,7 @@ run = ["chmod 755 /opt/homebrew/share"]
 "~/.config/git/ignore" = "git/ignore"
 "~/.config/nvim/init.lua" = "nvim/init.lua"
 "~/.config/zed/settings.json" = "zed/settings.json"
+"~/.config/tinycast/settings.json" = "tinycast/settings.json"
 "~/.psqlrc" = "postgres/.psqlrc"
 "~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
 "~/.claude/settings.json" = "claude/settings.json"
@@ -119,6 +120,17 @@ key = "com.apple.mouse.tapBehavior"
 host = "current"
 value = 1
 
+# Frees ctrl+space for Tinycast. Karabiner's eisuu and kana keys switch input sources instead.
+[[bootstrap.macos.defaults_entries]]
+domain = "com.apple.symbolichotkeys"
+key = "AppleSymbolicHotKeys"
+path = ["60", "enabled"]
+value = false
+
+# Tinycast reads ~/.config/tinycast/settings.json only while this is on, and its settings file cannot turn it on.
+[bootstrap.macos.defaults."com.tinycast.app"]
+settingsFileEnabled = true
+
 # Runs on every `mise bootstrap`, changed or not.
 # The screenshot location is written here because defaults values are not templated, so $HOME cannot be declared.
 [bootstrap.hooks.post-defaults]
@@ -126,6 +138,8 @@ run = [
   'mkdir -p "$HOME/Pictures/screenshots"',
   'defaults write com.apple.screencapture location -string "$HOME/Pictures/screenshots"',
   "killall Finder Dock SystemUIServer 2>/dev/null || true",
+  # Without this, a symbolic hotkey change waits for the next login.
+  "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u",
 ]
 
 [tasks.claude-install]
