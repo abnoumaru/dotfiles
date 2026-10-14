@@ -17,12 +17,14 @@
    mise bootstrap
    ```
 
-5. Set the git identity, which stays out of this repository, then `gh auth login`
+5. Set the git identity, which stays out of this repository, then `gh auth login`.
+   `--global` would write into this repository, because without `~/.gitconfig` git writes to `~/.config/git/config`.
+   The signing key is the public half of the SSH key in 1Password; turn on its SSH agent under Settings → Developer.
 
    ```bash
-   git config --global user.name "<name>"
-   git config --global user.email "<email>"
-   git config --global user.signingkey "<ssh public key>"
+   git config --file ~/.gitconfig user.name "<name>"
+   git config --file ~/.gitconfig user.email "<email>"
+   git config --file ~/.gitconfig user.signingkey "<ssh public key>"
    ```
 
 6. Log out and back in, and grant Karabiner-Elements its permissions.
