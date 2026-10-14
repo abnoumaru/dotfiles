@@ -43,9 +43,12 @@
 "stablyai/orca" = "https://github.com/stablyai/homebrew-orca.git"
 "yukiarrr/tap" = "https://github.com/yukiarrr/homebrew-tap.git"
 
-# compinit ignores completions under a group-writable directory.
 [bootstrap.hooks.post-packages]
-run = ["chmod 755 /opt/homebrew/share"]
+run = [
+  # compinit ignores completions under a group-writable directory.
+  "chmod 755 /opt/homebrew/share",
+  'osascript -l JavaScript "{{ config_root }}/macos/use-google-japanese-input.js"',
+]
 
 [dotfiles]
 "~/.config/mise/config.toml" = "mise/global.toml"
