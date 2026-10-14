@@ -1,7 +1,7 @@
 ## Initial Setup
 
 1. `xcode-select --install`
-2. `curl https://mise.run | sh`
+2. `curl -fsSL https://mise.run | sh`
 3. Clone. The symlinks point into this path, so do not move it later.
 
    ```bash
