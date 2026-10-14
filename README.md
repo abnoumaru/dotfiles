@@ -5,8 +5,8 @@
 3. Clone. The symlinks point into this path, so do not move it later.
 
    ```bash
-   git clone https://github.com/abnoumaru/dotfiles ~/go/src/github.com/abnoumaru/dotfiles
-   cd ~/go/src/github.com/abnoumaru/dotfiles
+   git clone https://github.com/abnoumaru/dotfiles ~/src/github.com/abnoumaru/dotfiles
+   cd ~/src/github.com/abnoumaru/dotfiles
    mise trust
    ```
 

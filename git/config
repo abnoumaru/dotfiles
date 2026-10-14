@@ -10,7 +10,7 @@
 	untracked = cyan
 
 [ghq]
-	root = ~/go/src
+	root = ~/src
 
 [push]
 	autoSetupRemote = true
