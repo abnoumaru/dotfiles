@@ -59,3 +59,16 @@ Deleting an entry does not uninstall or unlink anything:
 | `[bootstrap.packages]` | `mise bootstrap packages prune`, or `brew uninstall --cask <cask>` if Homebrew installed it |
 | `[dotfiles]` | `mise bootstrap dotfiles unapply` |
 | `[bootstrap.macos.defaults]` | Reset it in System Settings |
+
+## Moving from `~/go/src` to `~/src`
+
+```bash
+cd ~/go/src/github.com/abnoumaru/dotfiles
+mise bootstrap dotfiles unapply
+mv ~/go/src ~/src
+cd ~/src/github.com/abnoumaru/dotfiles
+git pull
+mise trust
+mise bootstrap
+ghq root  # ~/src
+```
