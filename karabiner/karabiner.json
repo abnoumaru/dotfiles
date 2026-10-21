@@ -39,6 +39,45 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Slackで⌘K / ⌘T（クイックスイッチャー）を無効化して通知する",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'display notification \"本当に今それ見る必要ある？\" with title \"⌘K ブロック中\"'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'display notification \"本当に今それ見る必要ある？\" with title \"⌘T ブロック中\"'" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
