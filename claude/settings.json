@@ -120,7 +120,6 @@
       "Edit(/etc/sudoers)"
     ]
   },
-  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
