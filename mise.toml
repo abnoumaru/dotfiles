@@ -21,6 +21,7 @@
 
 "brew-cask:abue-ammar/tinycast/tinycast" = "latest"
 "brew-cask:chromium" = "latest"
+"brew-cask:claude" = "latest"
 "brew-cask:font-fira-code-nerd-font" = "latest"
 "brew-cask:font-monaspace" = "latest"
 "brew-cask:fontbase" = "latest"
