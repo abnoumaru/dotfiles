@@ -29,6 +29,7 @@
 "brew-cask:google-chrome@dev" = "latest"
 "brew-cask:google-japanese-ime" = "latest"
 "brew-cask:karabiner-elements" = "latest"
+"brew-cask:nani" = "latest"
 "brew-cask:rancher" = "latest"
 "brew-cask:session-manager-plugin" = "latest"
 "brew-cask:slack" = "latest"
