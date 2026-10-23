@@ -4,7 +4,7 @@ theme = Kanagawa Dragon
 # palette, so the diff word highlights are set here instead of in its theme file.
 palette = 28=#5a7a4e
 palette = 88=#934050
-font-family = Monaspace Argon
+font-family = Monaspace Neon
 font-feature = -calt
 background-opacity = 0.92
 # NOTE: not `hidden` -- macOS native tabs require the titlebar, so new_tab
