@@ -29,6 +29,7 @@
 "brew-cask:ghostty" = "latest"
 "brew-cask:google-chrome@dev" = "latest"
 "brew-cask:google-japanese-ime" = "latest"
+"brew-cask:hammerspoon" = "latest"
 "brew-cask:karabiner-elements" = "latest"
 "brew-cask:meetingbar" = "latest"
 "brew-cask:nani" = "latest"
@@ -60,6 +61,7 @@ run = [
 "~/.config/nvim/init.lua" = "nvim/init.lua"
 "~/.config/zed/settings.json" = "zed/settings.json"
 "~/.config/tinycast/settings.json" = "tinycast/settings.json"
+"~/.hammerspoon" = "hammerspoon"
 "~/.psqlrc" = "postgres/.psqlrc"
 "~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
 "~/.claude/settings.json" = "claude/settings.json"
@@ -76,6 +78,12 @@ run = [
 run = [
   'target="$HOME/.config/karabiner"; if [ -e "$target" ] && [ ! -L "$target" ]; then mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"; fi',
 ]
+
+# Neovim's LuaJIT runs the tests, so the layout code sticks to Lua 5.1 syntax that Hammerspoon's Lua 5.4 also accepts.
+[tasks.test]
+description = "run the Hammerspoon layout tests"
+dir = "hammerspoon"
+run = "nvim -l layout_test.lua"
 
 # Runs last in `mise bootstrap`.
 [tasks.bootstrap]
