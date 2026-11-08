@@ -79,13 +79,11 @@ run = [
   'target="$HOME/.config/karabiner"; if [ -e "$target" ] && [ ! -L "$target" ]; then mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"; fi',
 ]
 
-[tools]
-lua = "5.4"
-
+# Neovim's LuaJIT runs the tests, so the layout code sticks to Lua 5.1 syntax that Hammerspoon's Lua 5.4 also accepts.
 [tasks.test]
 description = "run the Hammerspoon layout tests"
 dir = "hammerspoon"
-run = "lua layout_test.lua"
+run = "nvim -l layout_test.lua"
 
 # Runs last in `mise bootstrap`.
 [tasks.bootstrap]
