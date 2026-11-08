@@ -29,6 +29,7 @@
 "brew-cask:ghostty" = "latest"
 "brew-cask:google-chrome@dev" = "latest"
 "brew-cask:google-japanese-ime" = "latest"
+"brew-cask:hammerspoon" = "latest"
 "brew-cask:karabiner-elements" = "latest"
 "brew-cask:meetingbar" = "latest"
 "brew-cask:nani" = "latest"
