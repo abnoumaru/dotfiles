@@ -61,6 +61,7 @@ run = [
 "~/.config/nvim/init.lua" = "nvim/init.lua"
 "~/.config/zed/settings.json" = "zed/settings.json"
 "~/.config/tinycast/settings.json" = "tinycast/settings.json"
+"~/.hammerspoon" = "hammerspoon"
 "~/.psqlrc" = "postgres/.psqlrc"
 "~/.claude/CLAUDE.md" = "claude/CLAUDE.md"
 "~/.claude/settings.json" = "claude/settings.json"
@@ -77,6 +78,14 @@ run = [
 run = [
   'target="$HOME/.config/karabiner"; if [ -e "$target" ] && [ ! -L "$target" ]; then mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"; fi',
 ]
+
+[tools]
+lua = "5.4"
+
+[tasks.test]
+description = "run the Hammerspoon layout tests"
+dir = "hammerspoon"
+run = "lua layout_test.lua"
 
 # Runs last in `mise bootstrap`.
 [tasks.bootstrap]

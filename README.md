@@ -27,7 +27,7 @@
    git config --file ~/.gitconfig user.signingkey "<ssh public key>"
    ```
 
-6. Log out and back in, and grant Karabiner-Elements its permissions.
+6. Log out and back in, and grant Karabiner-Elements and Hammerspoon their permissions.
 
 ## Adding something
 
