@@ -7,7 +7,7 @@
 
 ## Writing
 
-Applies to documents, PR descriptions, commit messages, and code comments.
+Applies to documents and code comments. Commit messages and PR descriptions are written in English.
 
 - Write natural Japanese. Avoid literal translations from English, coined words, and abstract metaphors (e.g. 「払った教訓」「今日の地図」「起点」「系列」「手組みリソース」「素タグ」). Before finishing, reread the text and ask whether a native speaker would actually phrase it that way.
 - Spell out names in full instead of abbreviating (e.g. WIF, FIC, CL, sg).
@@ -55,7 +55,10 @@ Each kind of information has exactly one home ([t_wada](https://x.com/t_wada/sta
 
 - Create PRs as drafts.
 - If the repository has a PR template, follow it.
-- Otherwise, choose sections from 背景, 課題, やったこと, トレードオフ, and 他に考えたが採用しなかった案 according to the size of the task and the weight of its impact. A small change may need only やったこと.
+- Otherwise, write it in English with Background, What this does, and Note, plus Alternatives considered when an alternative was weighed. A small change may need only What this does.
+- Background says what is wrong today and why it matters, concretely, naming the PR or issue it came from. What this does says what changes and what the reader sees as a result. Note holds what could not be verified, what could go another way, and anything the reviewer should decide.
+- Write each section as a few sentences of prose. Use bullets only when each item is an independent change, such as one entry per reworded string.
+- One concern per PR. A cleanup noticed on the way becomes its own PR that names the one it came from.
 - Keep the title short enough to convey what the PR does at a glance.
 - When asked to reply to a PR or issue comment, draft the reply. Post it only when explicitly asked.
 - Once a PR has review comments, add new commits instead of force pushing. When a force push is needed, use `--force-with-lease`.
